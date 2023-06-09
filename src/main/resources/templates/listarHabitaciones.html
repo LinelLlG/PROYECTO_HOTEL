@@ -73,15 +73,15 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="habitacion: ${habitaciones}">
+										<tr th:each="habitaciones: ${habitaciones}">
 											<!--<td th:text="${habitacion.cod_hab}"></td>-->
-											<td th:text="${habitacion.num_hab}">101</td>
-											<td th:text="${habitacion.nom_hab}">Los Lúcumos</td>
-											<td th:text="${habitacion.pabellon.des_pab}">P-2</td>
-											<td th:text="${habitacion.tipoHabitacion.nom_tip_hab}">Quíntuple</td>
-											<td th:text="${habitacion.pisos.nom_pis}">1er Piso</td>
-											<td><span class="status dispo" th:text="${habitacion.disponibilidad.disponibilidad}">Si</span></td>
-											<td class="td-contenedor-botones"><button class="status btn-edit"><i class='bx bx-edit'></i></button></td>
+											<td th:text="${habitaciones.num_hab}"></td>
+											<td th:text="${habitaciones.nom_hab}"></td>
+											<td th:text="${habitaciones.pabellon.des_pab}"></td>
+											<td th:text="${habitaciones.tipoHabitacion.nom_tip_hab}"></td>
+											<td th:text="${habitaciones.pisos.nom_pis}"></td>
+											<td><span class="status dispo" th:text="${habitaciones.disponibilidad.disponibilidad}"></span></td>
+											<td class="td-contenedor-botones"><a class="status btn-edit" th:href="@{/editarHabitaciones/}+${habitaciones.cod_hab}"><i class='bx bx-edit'></i></a></td>
 										</tr>
 									</tbody>
 									<tfoot>

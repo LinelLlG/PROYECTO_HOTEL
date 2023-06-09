@@ -1,0 +1,242 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/*========== VARIABLES CSS ==========*/
+:root{
+    --header-height: 3.5rem;
+    --nav-width: 219px;
+
+    /*============COLORES=============*/
+    --first-color: #428a75;
+    --first-color-light: #F4F0FA;
+    --title-color: #19181B;
+    --text-color: #58555E;
+    --text-color-light: #A5A1AA;
+    --body-color: #ecebec;
+    --container-color: #FFF;
+
+    /*=========FUENTES============*/
+    --body-font: 'Poppins', sans-serif;
+    --normal-font-size: .990rem;
+    --small-font-size: .90rem;
+    --smaller-font-size: .90rem;
+
+    /*=====WEIGHT DE FUENTES=======*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
+    /*=====Z INDEX========*/
+    --z-fixed: 100;
+    }
+
+    /*====BASE========*/
+body {
+	font-family: var(--body-font);
+    min-height: 100vh;
+    background: linear-gradient(45deg, #2a8d9e, #428a75,pink);
+    background-size: 400% 300%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: cambiar 5s ease infinite;
+}
+@keyframes cambiar{
+    0%{background-position: 0 50%;}
+    50%{background-position: 100% 50%;}
+    100%{background-position: 0 50%;}
+}
+a:link, a:visited, a:active {
+    text-decoration:none;
+}
+
+/*card*/
+.login-card{
+    width: 450px;
+    background: rgba(255,255,255,.5);
+    padding: 4rem;
+    border-radius: 10px;
+    position: relative;
+    transition: all 0.5s;
+}
+.login-card::before{
+    content: '';
+    position: absolute;
+    background: rgba(255,255,255,.15);
+    border-radius: 10px;
+    inset: 0;
+    transform: rotate(-5deg);
+    z-index: -1;
+}
+.login-card-logo{
+    margin-bottom: 2rem;
+}
+.login-card-logo img{
+    width: 60px;
+    opacity: .6;
+    animation: movimiento 1.5s linear infinite;
+}
+@keyframes movimiento{
+    0%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(4px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+.login-card-logo,
+.login-card-header{
+    text-align: center;
+}
+.login-card-header{
+    margin-bottom: 2rem;
+}
+.login-card-header h1{
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #2d2d2e;
+    animation: desaparecer 1.5s linear infinite;
+}
+@keyframes desaparecer{
+	0%{
+		opacity: 1;
+	}
+	50%{
+        color: var(--first-color);
+	}
+	100%{
+		opacity: 1;
+	}
+}
+.login-card-header h1 + div{
+    font-size: calc(1rem * .8);
+    opacity: .8;
+}
+.login-card-form{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.login-card-form .form-item{
+    position: relative;
+}
+.login-card-form .form-item .form-item-icon{
+    position: absolute;
+    top: 1rem;
+    left: 1.4rem;
+    font-size: 1.3rem;
+    opacity: .4;
+}
+.login-card input[type="text"],
+.login-card input[type="password"],
+.login-card input[type="email"]{
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, .3);
+    padding: 1rem 1.5rem;
+    padding-left: calc(1rem * 3.5);
+    border-radius: 100px;
+    width: 100%;
+    transition: background .5s;
+}
+.login-card input:focus{
+    background: rgba(255, 255, 255, 0.548);
+}
+.login-card-form button{
+    background: var(--first-color);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: background .5s;
+}
+.login-card-form button:hover{
+    background-color: #2a8d9e;
+    cursor: pointer;
+}
+.login-card-social{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+    margin-top: 3rem;
+}
+.login-card-social > div{
+    opacity: .8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: calc(1rem * .8);
+    color: rgba(243, 243, 243, 0.904);
+    font-weight: 300;
+}
+.login-card-social-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.login-card-social-btn a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, .6);
+    border-radius: 100px;
+    transition: all .5s;
+}
+.login-card-social-btn a:hover{
+    background: rgba(255, 255, 255, 0.548);
+    transform: scale(1.1);
+    color: var(--first-color);
+}
+/*RESPONSIVE*/
+@media (max-width:768px){
+    body{
+        padding: 2rem 0;
+    }
+    .login-card{
+        width: 300px;
+        padding: 2rem;
+        transition: all 0.5s;
+    }
+}
+/*------------------------PRE LOADER--------------------------------*/
+#contenedor_loader{
+    background-color: var(--body-color);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    -webkit-transition: all 1s ease ;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+    z-index: 10000;
+}
+#loader{
+    border: 15px solid var(--first-color);
+    border-top-color: #73777B;
+    border-top-style: dotted;
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    -webkit-animation: girar 1.5s linear infinite;
+    -o-animation: girar 1.5s linear infinite;
+    animation: girar 1.5s linear infinite;
+}
+
+@keyframes girar{
+    from{transform: rotate(0deg);}
+    to{transform: rotate(360deg);}
+}
+/*----------------------------FIN DE PRE LOADER----------------------*/

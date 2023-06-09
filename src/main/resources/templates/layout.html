@@ -17,6 +17,7 @@
     <link rel="shortcut icon" th:href="@{./resources/img/logo1.ico}">
 </head>
 <body>
+<div th:fragment="layout">
     <!--Pre Loader Inicio--> 
     <div id="contenedor_loader">
         <div id="loader"></div>
@@ -57,7 +58,7 @@
 				<li>
 					<a href="#"><i class='bx bx-bed icon'></i> Habitaciones <i class='bx bx-chevron-right icon-right'></i></a>
 					<ul class="side-dropdown">
-						<li><a href="listarHabitaciones.html">Listar Habitaciones</a></li>
+						<li><a th:href="@{/habitaciones}">Listar Habitaciones</a></li>
 						<li><a href="registrarHabitaciones.html">Registrar Habi.</a></li>
 					</ul>
 				</li>
@@ -132,18 +133,9 @@
             </div>
         </nav>
         <!--NAVBAR END-->
-
-		<!-- MAIN -->
-		<main>
-			<div class="data">
-				<div class="content-data card">
-                                                                                                                    <!-- CONTENIDO AQUIIIIIIIIIIII -->
-				</div>
-			</div>
-		</main>
-		<!-- MAIN CONTENEDOR FIN -->
-	</section>
-	<!-- NAVBAR FIN -->
+</section>
+</div>
+<!-- NAVBAR FIN -->
 
 	<!--SCRIPTS INICIO-->
 	<script>

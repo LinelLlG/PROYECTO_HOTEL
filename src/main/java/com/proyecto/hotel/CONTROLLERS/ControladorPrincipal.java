@@ -20,4 +20,7 @@ public class ControladorPrincipal {
         return "layout";
     }
     
+    /*----------------CRUD HABITACIONES----------------*/
+    
+    
 }

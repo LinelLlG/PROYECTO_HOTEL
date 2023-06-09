@@ -17,13 +17,10 @@ public class Pisos implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cod_pais;
-    private String nom_pais;
+    private Long cod_pis;
+    private String nom_pis;
 
-    @OneToMany(mappedBy = "pais")
-    private List<Proveedor> listaProveedor;
-
-    @OneToMany(mappedBy = "pais")
-    private List<Sede> listaSede;
+    @OneToMany(mappedBy = "pisos")
+    private List<Habitaciones> listaHabitaciones;
     
 }

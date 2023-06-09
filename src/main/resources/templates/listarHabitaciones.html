@@ -26,6 +26,7 @@
     <body>
         <div th:insert="layout :: layout"></div>
         <!-- MAIN -->
+        <section id="contenido">
 		<main>
 			<div class="data">
 				<div class="content-data card">
@@ -52,7 +53,7 @@
 					</div>
 					<div class="table-data">
 						<div class="order" th:if="${habitaciones!= null and !habitaciones.empty  }">
-							<div action="index.html" class="head">
+							<div class="head">
 								<h3>Todas las Habitaciones</h3>
 								<input type="search" class="inputSearch" id="searchTerm" onkeyup="doSearch()" onkeypress="return event.keyCode != 13;">
 								<button style="border: none; color:#58555E;"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -61,28 +62,26 @@
 								<table id="tablaHabitaciones">
 									<thead>
 										<tr>
-											<th>Código</th>
+											<!--<th>Código</th>-->
 											<th>Número</th>
 											<th>Nombre</th>
 											<th>Pabellon</th>
 											<th>Tipo</th>
 											<th>Piso</th>
-											<th>PrecioFS</th>
-											<th>PrecioES</th>
 											<th>Disponibilidad</th>
 											<th></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr th:each="habitacion: ${habitaciones}">
-											<td th:text="${habitacion.cod_hab}"></td>
+											<!--<td th:text="${habitacion.cod_hab}"></td>-->
 											<td th:text="${habitacion.num_hab}">101</td>
 											<td th:text="${habitacion.nom_hab}">Los Lúcumos</td>
 											<td th:text="${habitacion.pabellon.des_pab}">P-2</td>
 											<td th:text="${habitacion.tipoHabitacion.nom_tip_hab}">Quíntuple</td>
 											<td th:text="${habitacion.pisos.nom_pis}">1er Piso</td>
 											<td><span class="status dispo" th:text="${habitacion.disponibilidad.disponibilidad}">Si</span></td>
-											<td class="td-contenedor-botones"><button class="status btn-edit" data-bs-toggle="modal" data-bs-target="#modalActualizar"><i class='bx bx-edit'></i></button></td>
+											<td class="td-contenedor-botones"><button class="status btn-edit"><i class='bx bx-edit'></i></button></td>
 										</tr>
 									</tbody>
 									<tfoot>
@@ -98,6 +97,93 @@
 				</div>
 			</div>
 		</main>
-		<!-- MAIN CONTENEDOR FIN -->
+            </section>
+<!-- MAIN CONTENEDOR FIN -->
     </body>
+    
+   <!--SCRIPTS INICIO-->
+	<script>
+		// DATATABLES INICIO
+		$(document).ready( function () {
+		$('#tablaHabitaciones').DataTable({
+			paging:false,
+			deferRender:true,
+			responsive:true,
+			searching:false,
+			info:true,
+			language:{
+				url:'//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json'
+			},
+			dom: 'Bfrtip',
+				buttons:[
+					{
+						extend: 'pdf',
+						text: '<i class="bx bxs-file-pdf"></i>  PDF',
+						titleAttr: 'Exportar a Pdf',
+						className:'btn btn-light'
+					},
+					{
+						extend: 'csv',
+						text: '<i class="bx bxs-cylinder"></i>  CSV',
+						titleAttr: 'Exportar a CSV',
+						className:'btn btn-light'
+					},
+					{
+						extend: 'excel',
+						text: '<i class="bx bx-table"></i>  EXCEL',
+						titleAttr: 'Exportar a EXCEL',
+						className:'btn btn-light'
+					}
+				]
+			});
+		} );
+		//FIN DATATABLES
+
+		//SEARCH INICIO
+		function doSearch()
+			{
+				const tableReg = document.getElementById('tablaHabitaciones');
+				const searchText = document.getElementById('searchTerm').value.toLowerCase();
+				let total = 0;
+
+
+				for (let i = 1; i < tableReg.rows.length; i++) {
+
+					if (tableReg.rows[i].classList.contains("noSearch")) {
+						continue;
+					}
+
+					let found = false;
+					const cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+
+					for (let j = 0; j < cellsOfRow.length && !found; j++) {
+						const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+
+						if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
+							found = true;
+							total++;
+						}
+					}
+					if (found) {
+						tableReg.rows[i].style.display = '';
+					} else {
+
+						tableReg.rows[i].style.display = 'none';
+					}
+				}
+				const lastTR=tableReg.rows[tableReg.rows.length-1];
+				const td=lastTR.querySelector("td");
+				lastTR.classList.remove("hide", "red");
+				if (searchText == "") {
+					lastTR.classList.add("hide");
+				} else if (total) {
+					td.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"");
+				} else {
+					lastTR.classList.add("red");
+					td.innerHTML="No se han encontrado coincidencias";
+				}
+			}
+		//SEARCH FIN
+	</script>
+    
 </html>

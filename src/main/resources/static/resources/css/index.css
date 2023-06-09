@@ -355,6 +355,13 @@ nav .profile .profile-link a:hover {
 /* NAVBAR FIN*/
 
 /* MAIN INICIO */
+#contenido {
+	position: relative; /*absolute*/
+	width: calc(100% - 260px);
+	margin-top: 3.5rem;
+	left: 260px;
+	transition: all .3s ease;
+}
 main {
 	width: 100%;
 	padding: 20px 20px 20px 20px;

@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tb_tipoHabitacion")
+@Table(name = "tb_tipohabitacion")  //TODO DEBE SER CON MINUSCULA
 public class TipoHabitacion implements Serializable{
     
     @Id

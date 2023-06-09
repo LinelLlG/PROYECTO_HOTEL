@@ -16,7 +16,7 @@ public class HabitacionesIMPLEMENT implements HabitacionesSERVICE{
     @Override
     @Transactional(readOnly = true)
     public List<Habitaciones> listarHabitaciones() {
-        return (List<Habitaciones>)habitacionesDao.findAll();
+        return habitacionesDao.findAll();
     }
 
     @Override

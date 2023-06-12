@@ -62,7 +62,8 @@
 										<div class="input-box">
 											<span class="details">Pabellón</span>
 											<select name="des_pab" th:field="*{pabellon.cod_pab}" id="idPabellon">
-													<option value=" ">[Seleccione Pabellón]</option>
+<!--                                                                                            value debe ser 0, no lo dejes así " "-->
+													<option value=0>[Seleccione Pabellón]</option>
 					  								<option th:each="row:${pabellon}" 
 					  										th:text="${row.des_pab}"
 					  										th:value="${row.cod_pab}"/>
@@ -71,7 +72,7 @@
 										<div class="input-box">
 											<span class="details">Piso</span>
 											<select name="nom_pis" th:field="*{pisos.cod_pis}" id="idPisos">
-												<option value=" ">[Seleccione Piso]</option>
+												<option value=0>[Seleccione Piso]</option>
 					  							<option th:each="row:${pisos}" 
 					  									th:text="${row.nom_pis}"
 					  									th:value="${row.cod_pis}"/>
@@ -80,7 +81,7 @@
 										<div class="input-box">
 											<span class="details">Tipo</span>
 											<select name="nom_tip_hab" th:field="*{tipoHabitacion.cod_tip_hab}" id="idTipoHab">
-												 <option value=" ">[Seleccione Tipo de Habitacion]</option>
+												 <option value=0>[Seleccione Tipo de Habitacion]</option>
 					  							<option th:each="row:${tipoHabitacion}" 
 					  									th:utext="${row.nom_tip_hab}"
 					  									th:value="${row.cod_tip_hab}"/>

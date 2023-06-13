@@ -1,10 +1,13 @@
 package com.proyecto.hotel.CONTROLLERS;
 
+import com.proyecto.hotel.ENTITIES.Clientes;
 import com.proyecto.hotel.ENTITIES.Habitaciones;
+import com.proyecto.hotel.SERVICES.ClientesSERVICE;
 import com.proyecto.hotel.SERVICES.DisponibilidadSERVICE;
 import com.proyecto.hotel.SERVICES.HabitacionesSERVICE;
 import com.proyecto.hotel.SERVICES.PabellonSERVICE;
 import com.proyecto.hotel.SERVICES.PisosSERVICE;
+import com.proyecto.hotel.SERVICES.TipoClienteSERVICE;
 import com.proyecto.hotel.SERVICES.TipoHabitacionSERVICE;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,12 @@ public class ControladorPrincipal {
     
     @Autowired
     private HabitacionesSERVICE habitacionesService;
+    
+    @Autowired
+    private ClientesSERVICE clientesService;
+    
+    @Autowired
+    private TipoClienteSERVICE tipoClienteService;
     
     @Autowired
     private PisosSERVICE pisosService;
@@ -93,6 +102,49 @@ public class ControladorPrincipal {
     public String eliminarHabitaciones(Habitaciones habitaciones){
         habitacionesService.eliminarHabitaciones(habitaciones);
         return "redirect:/habitaciones";
+    }
+    
+    /*------------------ CRUD CLIENTES ----------------*/
+    
+    @GetMapping("/clientes")
+    public String listarClientes(Model model){
+        var clientes = clientesService.listarClientes();
+        model.addAttribute("clientes", clientes);
+        return "listarClientes";
+    }
+    
+    @GetMapping("/agregarClientes")
+    public String agregarClientes(Clientes clientes, Model model){
+        var tipoCliente = tipoClienteService.listarTipoCliente();
+        model.addAttribute("tipoCliente", tipoCliente);
+        var disponibilidad = disponibilidadService.listarDisponibilidad();
+        model.addAttribute("disponibilidad", disponibilidad);
+        
+        model.addAttribute("clientes", clientes);
+        return "mantenimientoClientes";
+    }
+    
+    @GetMapping("/guardarClientes")
+    public String guardarClientes(Clientes clientes){
+        clientesService.guardarClientes(clientes);
+        return "redirect:/clientes";
+    }
+    
+    @GetMapping("/editarClientes/{cod_cli}")
+    public String editarClientes(Clientes clientes, Model model){
+        clientes = clientesService.bucarClientes(clientes);
+        model.addAttribute("clientes", clientes);
+        var tipoCliente = tipoClienteService.listarTipoCliente();
+        model.addAttribute("tipoCliente", tipoCliente);
+        var disponibilidad = disponibilidadService.listarDisponibilidad();
+        model.addAttribute("disponibilidad", disponibilidad);
+        return "listarClientes";
+    }
+    
+    @GetMapping("eliminarClientes/{cod_cli}")
+    public String eliminarClientes(Clientes clientes){
+        clientesService.eliminarClientes(clientes);
+        return "redirect:/clientes";
     }
     
 }

@@ -25,7 +25,6 @@
     </head>
     <body>
         <div th:insert="layout :: layout"></div>
-        
         <section id="contenido">
             <!-- MAIN -->
 		<main>
@@ -34,79 +33,92 @@
 					<!--CONTENIDO INICIO-->
 					<div class="head-title">
 						<div class="left">
-							<h1>Lista de Habitaciones</h1>
+							<h1>Lista de Clientes</h1>
 							<ul class="breadcrumb">
 								<li>
 									<a href="#">Lista</a>
 								</li>
 								<li><i class="fa-solid fa-chevron-right"></i></li>
 								<li>
-									<a href="listarHabitaciones.html" class="active">Habitaciones</a>
+									<a href="#" class="active">Clientes</a>
 								</li>
 							</ul>
 						</div>
 						<div class="inputFunction">
-							<a th:href="@{/agregarHabitaciones}" class="btn-download">
+							<a href="#" class="btn-filtro1">
+								<i class='bx bxs-face'></i>
+							</a>
+							<a href="#" class="btn-filtro2">
+								<i class='bx bx-building-house'></i>
+							</a>
+							<a th:href="@{/agregarClientes}" class="btn-download">
 								<i class='bx bx-plus-circle'></i>
 								<span>REGISTRAR</span>
 							</a>
 						</div>
 					</div>
 					<div class="table-data">
-						<div class="order" th:if="${habitaciones!= null and !habitaciones.empty  }">
+						<div class="order" th:if="${clientes!= null and !clientes.empty  }">
 							<div class="head">
-								<h3>Todas las Habitaciones</h3>
+								<h3>Todos los Clientes</h3>
+								<input type="date" class="inputSearch">
 								<input type="search" class="inputSearch" id="searchTerm" onkeyup="doSearch()" onkeypress="return event.keyCode != 13;">
 								<button style="border: none; color:#58555E;"><i class="fa-solid fa-magnifying-glass"></i></button>
 							</div>
 							<div class="tabla-scroll">
-								<table id="tablaHabitaciones">
-									<thead>
-										<tr>
-											<!--<th>Código</th>-->
-											<th>Número</th>
-											<th>Nombre</th>
-											<th>Pabellon</th>
-											<th>Tipo</th>
-											<th>Piso</th>
-											<th>Disponibilidad</th>
-											<th></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr th:each="habitaciones: ${habitaciones}">
-											<!--<td th:text="${habitacion.cod_hab}"></td>-->
-											<td th:text="${habitaciones.num_hab}"></td>
-											<td th:text="${habitaciones.nom_hab}"></td>
-											<td th:text="${habitaciones.pabellon.des_pab}"></td>
-											<td th:text="${habitaciones.tipoHabitacion.nom_tip_hab}"></td>
-											<td th:text="${habitaciones.pisos.nom_pis}"></td>
-											<td><span class="status dispo" th:text="${habitaciones.disponibilidad.disponibilidad}"></span></td>
-											<td class="td-contenedor-botones"><a class="status btn-edit" th:href="@{/editarHabitaciones/}+${habitaciones.cod_hab}"><i class='bx bx-edit'></i></a></td>
-										</tr>
-									</tbody>
-									<tfoot>
-										<tr class='noSearch hide'>
-											<td colspan="10"></td>
-										</tr>
-									</tfoot>
-								</table>
-							</div>
+							<table id="tablaClientes">
+								<thead>
+									<tr>
+										<!--<th>Código</th>-->
+										<th>Nombre</th>
+										<th>Apellido</th>
+										<th>Dni</th>
+										<th>Ruc</th>
+										<th>Teléfono</th>
+										<th>Correo</th>
+										<th>Direccion</th>
+										<th>Tipo</th>
+                                                                                                                                                                                                                                                <th>Disponibilidad</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="clientes:${clientes}">
+										<!--<td th:text="${clientes.cod_cli}"></td>-->
+										<td th:text="${clientes.nom_cli}"></td>
+										<td th:text="${clientes.ape_cli}"></td>
+										<td th:text="${clientes.dni_cli}"></td>
+										<td th:text="${clientes.ruc_cli}"></td>
+										<td th:text="${clientes.cel_cli}"></td>
+										<td th:text="${clientes.email_cli}"></td>
+										<td th:text="${clientes.dir_cli}"></td>
+										<td th:text="${clientes.tipoCliente.nom_tip_cli}"></td>
+                                                                                                                                                                                                                                                <td th:text="${clientes.disponibilidad.disponibilidad}"></td>
+										<td class="td-contenedor-botones"><a class="status btn-edit"><i class='bx bx-edit'></i></a></td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr class='noSearch hide'>
+										<td colspan="10"></td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
 						</div>
 					</div>
 					<!--CONTENIDO FIN-->
 				</div>
 			</div>
 		</main>
-            </section>
-<!-- MAIN CONTENEDOR FIN -->
+		<!-- MAIN CONTENEDOR FIN -->
+        </section>
     </body>
     
-   <!--SCRIPTS INICIO-->
+    <!--SCRIPTS INICIO-->
 	<script>
 		// DATATABLES INICIO
 		$(document).ready( function () {
-		$('#tablaHabitaciones').DataTable({
+		$('#tablaClientes').DataTable({
 			paging:false,
 			deferRender:true,
 			responsive:true,
@@ -143,7 +155,7 @@
 		//SEARCH INICIO
 		function doSearch()
 			{
-				const tableReg = document.getElementById('tablaHabitaciones');
+				const tableReg = document.getElementById('tablaClientes');
 				const searchText = document.getElementById('searchTerm').value.toLowerCase();
 				let total = 0;
 

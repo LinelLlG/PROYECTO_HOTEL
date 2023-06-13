@@ -41,6 +41,7 @@ public class Clientes implements Serializable{
     @OneToMany(mappedBy = "clientes")
     private List<Boleta> listaBoletas;
     */
+    @ManyToOne
     @JoinColumn(name="cod_disp")
     private Disponibilidad disponibilidad;
     

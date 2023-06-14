@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <!--INTEGRACIONES DE SIEMPRE-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,600;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b3a8f0ecfc.js" crossorigin="anonymous"></script>
+    <!--NECESARIAS PARA EL INDEX-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link th:href="@{./resources/css/index.css}" rel="stylesheet" type = "text/css">
+    <title>SYSTEM - HOTEL</title>
+    <link rel="shortcut icon" th:href="@{./resources/img/logo1.ico}">
+    </head>
+    <body>
+        <div th:insert="layout :: layout"></div>
+        <section id="contenido">
+            <!-- MAIN -->
+		<main>
+			<div class="data">
+				<div class="content-data card">
+					<!--CONTENIDO INICIO-->
+					<div class="head-title">
+						<div class="left">
+							<h1>Registro de Clientes</h1>
+							<ul class="breadcrumb">
+								<li>
+									<a href="#">Registro</a>
+								</li>
+								<li><i class="fa-solid fa-chevron-right"></i></li>
+								<li>
+									<a href="#" class="active">Clientes</a>
+								</li>
+							</ul>
+						</div>
+						<div class="inputFunction">
+							<a href="#" class="btn-cancel">
+								<i class='bx bx-x' ></i>
+								<span>CANCELAR</span>
+							</a>
+						</div>
+					</div>
+					<div class="table-data">
+						<div class="order">
+							<div class="container">
+								<form action="#">
+									<div class="user-details">
+										<div class="input-box">
+											<span class="details">Código</span>
+											<input class="readonly" type="text" placeholder="El código autogenerado" required readonly>
+										</div>
+										<div class="input-box">
+											<span class="details">Nombres</span>
+											<input type="text" placeholder="Ingrese los nombres" required>
+										</div>
+										<div class="input-box">
+											<span class="details">Apellidos</span>
+											<input type="text" placeholder="Ingrese los apellidos" required>
+										</div>
+										<div class="input-box">
+											<span class="details">Dni</span>
+											<input type="text" placeholder="Ingrese el DNI" required>
+										</div>
+										<div class="input-box">
+											<span class="details">Ruc</span>
+											<input type="text" placeholder="Ingrese el RUC">
+										</div>
+										<div class="input-box">
+											<span class="details">Teléfono</span>
+											<input type="text" placeholder="Ingrese el teléfono" required>
+										</div>
+										<div class="input-box">
+											<span class="details">Correo</span>
+											<input type="text" placeholder="Ingrese el correo" required>
+										</div>
+										<div class="input-box">
+											<span class="details">Dirección</span>
+											<input type="text" placeholder="Ingrese una dirección" required>
+										</div>
+										<div class="input-box">
+											<span class="details">Tipo</span>
+											<select name="tipo_cliente" id="tipo_cliente">
+												<option value="0">Full Day</option>
+												<option value="1">Huésped</option>
+											</select>
+										</div>
+									</div>
+									<div class="button">
+										<button class="cssbuttons-io-button"> REGISTRAR
+											<div class="icon">
+											  <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
+											</div>
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!--CONTENIDO FIN-->
+				</div>
+			</div>
+		</main>
+		<!-- MAIN CONTENEDOR FIN -->
+        </section>
+    </body>
+</html>

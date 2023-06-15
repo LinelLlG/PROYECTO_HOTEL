@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/b3a8f0ecfc.js" crossorigin="anonymous"></script>
     <!--NECESARIAS PARA EL INDEX-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link th:href="@{./resources/css/index.css}" rel="stylesheet" type = "text/css">
+    <link th:href="@{../resources/css/index.css}" rel="stylesheet" type = "text/css">
     <title>SYSTEM - HOTEL</title>
     <link rel="shortcut icon" th:href="@{./resources/img/logo1.ico}">
     </head>
@@ -45,7 +45,7 @@
 					<div class="table-data">
 						<div class="order">
 							<div class="container">
-								<form th:action="@{/proveedor/guardar}" method="post" th:object="${proveedor}">
+								<form th:action="@{/guardarProveedor}" method="post" th:object="${proveedor}">
 									<div class="user-details">
 										<div class="input-box">
 											<span class="details" for="cod_prov">Código</span>
@@ -77,7 +77,7 @@
 										</div>
 										<div class="input-box">
 											<span class="details" for="Fecha">Fecha de Registro</span>
-                                                                                        <input type="text" name="Fecha" th:field="*{fec_reg_prov}" placeholder="Ingrese una dirección" required>
+                                                                                        <input type="date" name="Fecha" th:field="*{fec_reg_prov}" placeholder="Ingrese una dirección" required>
 										</div>
 										<div class="input-box">
 											<span class="details" for="pais">Tipo</span>
@@ -92,13 +92,15 @@
                                                                                         <span class="details" for="sede">Sede</span>
                                                                                         <select name="sede" id="sede" th:field="*{sede.cod_sed}">
                                                                                                     <option value="0">[Seleccione Sede]</option>
+                                                                                                    <option  th:each="row : ${sede}"
+                                                                                                         th:text="${row.nom_sed}"
+                                                                                                         th:value="${row.cod_sed}"/>
                                                                                         </select>
                                                                                 </div>
                                                                                 <div class="input-box">
 											<span class="details" for="sucursal">Sucursal</span>
                                                                                         <input type="text" name="sucursal" th:field="*{suc_prov}" placeholder="Ingrese una dirección" required>
 										</div>
-                                                                                <input type="hidden" th:field="*{disponibilidad.disponibilidad}" value="1">
 									</div>
 									<div class="button">
 										<button class="cssbuttons-io-button"> REGISTRAR
@@ -122,7 +124,7 @@
             $(document).ready(function() {
                 $("#pais").change(function() {
                     var codigoPais = $(this).val();
-                    $.get("/ciudades/" + codigoPais, function(data) {
+                    $.get("/sede/" + codigoPais, function(data) {
                         var ciudadSelect = $("#sede");
                         ciudadSelect.empty();
                         ciudadSelect.append("<option value=''>Seleccione una ciudad</option>");

@@ -46,7 +46,7 @@
 							</ul>
 						</div>
 						<div class="inputFunction">
-							<a th:href="@{/agregarProveedores}" class="btn-download">
+							<a th:href="@{/registrarProveedor}" class="btn-download">
 								<i class='bx bx-plus-circle'></i>
 								<span>REGISTRAR</span>
 							</a>
@@ -89,12 +89,12 @@
 											<td th:text="${proveedores.dir_prov}"></td>
 											<td th:text="${proveedores.tlf_prov}"></td>
 											<td th:text="${proveedores.email_prov}"></td>
-											<td th:text="${proveedores.fec_reg_prov}"></td>
+											<td th:text="${#dates.format(proveedores.fec_reg_prov, 'dd/MM/yyyy')}"></td>
 											<td th:text="${proveedores.pais.nom_pais}"></td>
 											<td th:text="${proveedores.sede.nom_sed}"></td>
 											<td th:text="${proveedores.suc_prov}"></td>
 											<td><span class="status dispo" th:text="${proveedores.disponibilidad.disponibilidad}"></span></td>
-											<td class="td-contenedor-botones"><a class="status btn-edit" th:href="@{/editarHabitaciones/}+${proveedores.cod_prov}"><i class='bx bx-edit'></i></a></td>
+											<td class="td-contenedor-botones"><a class="status btn-edit" th:href="@{/editarProveedor/}+${proveedores.cod_prov}"><i class='bx bx-edit'></i></a></td>
 										</tr>
 									</tbody>
 									<tfoot>
@@ -113,7 +113,7 @@
             </section>
 <!-- MAIN CONTENEDOR FIN -->
     </body>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
    <!--SCRIPTS INICIO-->
 	<script>
 		// DATATABLES INICIO
@@ -198,5 +198,5 @@
 			}
 		//SEARCH FIN
 	</script>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>

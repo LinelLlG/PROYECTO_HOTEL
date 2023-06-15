@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link th:href="@{./resources/css/index.css}" rel="stylesheet" type = "text/css">
     <title>SYSTEM - HOTEL</title>
-    <link rel="shortcut icon" th:href="@{./resources/img/logo1.ico}">
+    <link rel="shortcut icon" th:href="@{../resources/img/logo1.ico}">
 </head>
 <body>
 <div th:fragment="layout">
@@ -33,7 +33,7 @@
 	<!--SIDEBAR INICIO-->
     <section id="sidebar">
 		<div>
-			<a href="index.html" class="brand"><img  th:src="@{./resources/img/logo1.png}" class="img icon" alt=""><span style="color: rgb(42, 141, 158);">AGUA</span><span>CATES</span></a>
+			<a href="index.html" class="brand"><img  th:src="@{../resources/img/logo1.png}" class="img icon" alt=""><span style="color: rgb(42, 141, 158);">AGUA</span><span>CATES</span></a>
 
 			<ul class="side-menu">
 				<li><a href="#" class="active"><i class='bx bxs-dashboard icon'></i> Dashboard</a></li>
@@ -82,7 +82,7 @@
 					<a href="#"><i class='bx bx-cart-add icon'></i> Proveedores<i class='bx bx-chevron-right icon-right'></i></a>
 					<ul class="side-dropdown">
 						<li><a th:href="@{/proveedores}">Listar Proveedores</a></li>
-						<li><a th:href="@{/agregarProveedor}">Registrar Prov.</a></li>
+						<li><a th:href="@{/registrarProveedor}">Registrar Prov.</a></li>
 					</ul>
 				</li>
 
@@ -124,7 +124,7 @@
             <span class="divider"></span>
 			<h1 class="profile-name">Recepcion</h1>
             <div class="profile">
-                <img  th:src="@{./resources/img/user1.png}" alt="">
+                <img  th:src="@{../resources/img/user1.png}" alt="">
                 <ul class="profile-link">
                     <li><a href="#"><i class='bx bxs-user-circle icon'></i> Perfil</a></li>
                     <li><a href="#"><i class='bx bxs-cog icon'></i> Ajustes</a></li>

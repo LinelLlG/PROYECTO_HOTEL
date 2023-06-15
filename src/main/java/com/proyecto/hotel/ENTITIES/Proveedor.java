@@ -2,6 +2,7 @@ package com.proyecto.hotel.ENTITIES;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @Entity
@@ -29,7 +31,9 @@ public class Proveedor implements Serializable{
     private String dir_prov;
     private String tlf_prov;
     private String email_prov;
-    private LocalDate fec_reg_prov;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fec_reg_prov;
     private String suc_prov;
 
     @ManyToOne

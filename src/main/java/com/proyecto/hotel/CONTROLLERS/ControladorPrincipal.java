@@ -1,15 +1,19 @@
 package com.proyecto.hotel.CONTROLLERS;
 
 import com.proyecto.hotel.ENTITIES.Clientes;
+import com.proyecto.hotel.ENTITIES.Empleado;
 import com.proyecto.hotel.ENTITIES.Habitaciones;
 import com.proyecto.hotel.ENTITIES.Servicio;
+import com.proyecto.hotel.SERVICES.CargoSERVICE;
 import com.proyecto.hotel.SERVICES.ClientesSERVICE;
 import com.proyecto.hotel.SERVICES.DisponibilidadSERVICE;
+import com.proyecto.hotel.SERVICES.EmpleadoSERVICE;
 import com.proyecto.hotel.SERVICES.HabitacionesSERVICE;
 import com.proyecto.hotel.SERVICES.PabellonSERVICE;
 import com.proyecto.hotel.SERVICES.PisosSERVICE;
 import com.proyecto.hotel.SERVICES.ServicioSERVICE;
 import com.proyecto.hotel.SERVICES.TipoClienteSERVICE;
+import com.proyecto.hotel.SERVICES.TipoContratoSERVICE;
 import com.proyecto.hotel.SERVICES.TipoHabitacionSERVICE;
 import com.proyecto.hotel.SERVICES.TipoServicioSERVICE;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +55,16 @@ public class ControladorPrincipal {
     
     @Autowired 
     private TipoServicioSERVICE tipoServicioService;
+    
+    @Autowired
+    private EmpleadoSERVICE empleadoSERVICE;
+    
+    @Autowired
+    private CargoSERVICE cargoSERVICE;
+    
+    @Autowired
+    private TipoContratoSERVICE tipoContratoSERVICE;
+    
     
     
     /*-------------- INICIO -------------*/
@@ -198,6 +212,56 @@ public class ControladorPrincipal {
     public String eliminarservicio(Servicio servicio){
         servicioService.eliminarServicio(servicio);
         return "redirect:/servicio";
+    }
+    
+    /*------------------ CRUD EMPLEADOS ----------------*/
+    @GetMapping("/empleado")
+    public String ListarEmpleados(Model model){
+        var empleado = empleadoSERVICE.listarEmpleados();
+        model.addAttribute("empleado", empleado);
+        return "listarEmpleados";
+    }
+    
+    @GetMapping("/agregarEmpleado")
+    public String agregarEmpleado(Empleado empleado, Model model){
+        var cargo = cargoSERVICE.listarCargo();
+        model.addAttribute("cargo", cargo);
+        var tipoContrato = tipoContratoSERVICE.listarTipoContrato();
+        model.addAttribute("tipoContrato", tipoContrato);
+        var disponibilidad = disponibilidadService.listarDisponibilidad();
+        model.addAttribute("disponibilidad", disponibilidad);
+        
+        
+        model.addAttribute("empleado", empleado);
+        return "mantenimientoEmpleados";
+    }
+    
+    @PostMapping("/guardarEmpleado")
+    public String guardarEmpleado(Empleado empleado){
+        empleadoSERVICE.guardarEmpleados(empleado);
+        return "redirect:/empleado";
+    }
+    
+    @GetMapping("/editarEmpleado/{cod_emp}")
+    public String editarEmpleado(Empleado empleado, Model model){
+        var cargo = cargoSERVICE.listarCargo();
+        model.addAttribute("cargo", cargo);
+        var tipoContrato = tipoContratoSERVICE.listarTipoContrato();
+        model.addAttribute("tipoContrato", tipoContrato);
+        var disponibilidad = disponibilidadService.listarDisponibilidad();
+        model.addAttribute("disponibilidad", disponibilidad);
+        
+       
+        empleado = empleadoSERVICE.buscarEmpleado(empleado);
+        model.addAttribute("empleado", empleado);
+        
+        return "mantenimientoEmpleados";
+    }
+    
+    @GetMapping("eliminarEmpleados/{cod_emp}")
+    public String eliminarEmpleados(Empleado empleado){
+        empleadoSERVICE.eliminarEmpleados(empleado);
+        return "redirect:/empleado";
     }
     
 }

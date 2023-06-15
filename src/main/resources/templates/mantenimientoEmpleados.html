@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        
+        <!--INTEGRACIONES DE SIEMPRE-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,600;1,400;1,700&display=swap" rel="stylesheet">
+                        <script src="https://kit.fontawesome.com/b3a8f0ecfc.js" crossorigin="anonymous"></script>
+                        <!--NECESARIAS PARA EL INDEX-->
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+                            <link th:href="@{../resources/css/index.css}" rel="stylesheet" type = "text/css">
+                                <title>SYSTEM - HOTEL</title>
+                                <link rel="shortcut icon" th:href="@{../resources/img/logo1.ico}">
+                                    </head>
+    
+    
+    
+    
+
+                                    <body>
+                                        <div th:insert="layout :: layout"></div>
+                                        <!-- MAIN -->
+                                        <section id="contenido">
+                                            <main>
+                                                <div class="data">
+                                                    <div class="content-data card">
+                                                        <!--CONTENIDO INICIO-->
+                                                        <div class="head-title">
+                                                            <div class="left">
+                                                                <h1>Mantenimiento de Empleado</h1>
+                                                                <ul class="breadcrumb">
+                                                                    <li>
+                                                                        <a href="#">Crud</a>
+                                                                    </li>
+                                                                    <li><i class="fa-solid fa-chevron-right"></i></li>
+                                                                    <li>
+                                                                        <a href="#" class="active">Empleado</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="inputFunction">
+                                                                <a th:href="@{/empleado}" class="btn-cancel">
+                                                                    <i class='bx bx-x' ></i>
+                                                                    <span>CANCELAR</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="table-data">
+                                                            <div class="order">
+                                                                <div class="container">
+                                                                    <form id="formEmpleado" th:action="@{/guardarEmpleado}" method="post" th:object="${empleado}" enctype="multipart/form-data">
+                                                                        <div class="user-details">
+                                                                            <div class="input-box">
+                                                                                <span class="details">Código</span>
+                                                                                <input class="readonly" name="cod_emp" th:field="*{cod_emp}" id="idCodigo" type="text" placeholder="El código es autogenerado" required  value="0" readonly>
+                                                                            </div>
+
+                                                                            <div class="input-box">
+                                                                                <span class="details">Nombre</span>
+                                                                                <input type="text" name="nom_emp" th:field="*{nom_emp}" id="idNombre" class="texto" placeholder="Ingrese el nombre" required minlength="5" maxlength="20">
+                                                                            </div>
+                                                                            <div class="input-box">
+                                                                                <span class="details">Apellido</span>
+                                                                                <input type="text" name="ape_emp" th:field="*{ape_emp}" id="idApellido" class="texto" placeholder="Ingrese el apellido" required minlength="5" maxlength="20">
+                                                                            </div>
+                                                                            <div class="input-box">
+                                                                                <span class="details">DNI</span>
+                                                                                <input type="text" name="dni_emp" th:field="*{dni_emp}" id="idDni" class="texto" placeholder="Ingrese el DNI">
+                                                                            </div>
+                                                                            <div class="input-box">
+                                                                                <span class="details">Email</span>
+                                                                                <input type="text" name="email_emp" th:field="*{email_emp}" id="idEmail" class="texto" placeholder="Ingrese el Email">
+                                                                            </div>
+                                                                            <div class="input-box">
+                                                                                <span class="details">Celular</span>
+                                                                                <input type="text" name="cel_emp" th:field="*{cel_emp}" id="idCelular" class="texto" placeholder="Ingrese el Celular">
+                                                                            </div>
+                                                                            <div class="input-box">
+                                                                                <span class="details">Direccion</span>
+                                                                                <input type="text" name="dir_emp" th:field="*{dir_emp}" id="idDireccion" class="texto" placeholder="Ingrese la direccion">
+                                                                            </div>
+                                                                            
+                                                                            <div class="input-box">
+                                                                                <label for="fecha">Fecha:</label>
+                                                                                <input type="date" name="fec_nac_emp" th:field="*{fec_nac_emp}" class="form-control" />
+                                                                            </div>
+                                                                            <div class="input-box">
+                                                                                <span class="details">Hijos</span>
+                                                                                <input type="text" name="hijos_emp" th:field="*{hijos_emp}" id="idHijos" class="texto" placeholder="Ingrese el numero de hijos">
+                                                                            </div>
+                                                                            <div class="input-box">
+                                                                                <span class="details">Profesion</span>
+                                                                                <input type="text" name="prof_emp" th:field="*{prof_emp}" id="idProfesion" class="texto" placeholder="Ingrese la profesion">
+                                                                            </div>
+                                                                            <div class="input-box">
+                                                                                <span class="details">Sueldo</span>
+                                                                                <input type="text" name="sueldo_emp" th:field="*{sueldo_emp}" id="idSueldo" class="texto" placeholder="Ingrese el sueldo">
+                                                                            </div>
+                                 
+                                                                            <div class="input-box">
+                                                                                <span class="details">Cargo</span>
+                                                                                <select name="nom_crg" th:field="*{cargo.cod_crg}" id="idCargo">
+                                                                                    <!--                                                                                            value debe ser 0, no lo dejes así " "-->
+                                                                                    <option value=0>[Seleccione Cargo]</option>
+                                                                                    <option th:each="row:${cargo}" 
+                                                                                            th:text="${row.nom_crg}"
+                                                                                            th:value="${row.cod_crg}"/>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="input-box">
+                                                                                <span class="details">Tipo de Contrato</span>
+                                                                                <select name="des_con" th:field="*{tipoContrato.cod_con}" id="idTipoContrato">
+                                                                                    <option value=0>[Seleccione Tipo de Contrato]</option>
+                                                                                    <option th:each="row:${tipoContrato}" 
+                                                                                            th:text="${row.des_con}"
+                                                                                            th:value="${row.cod_con}"/>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="input-box">
+                                                                                <span class="details">Disponibilidad</span>
+                                                                                <select name="disponibilidad" th:field="*{disponibilidad.cod_disp}" id="idDisponibilidad">
+                                                                                    <option value=0>[Seleccione disponibilidad]</option>
+                                                                                    <option th:each="row:${disponibilidad}" 
+                                                                                            th:utext="${row.disponibilidad}"
+                                                                                            th:value="${row.cod_disp}"/>
+                                                                                </select>
+                                                                            </div>
+                                                                                                                                                   </div>
+                                                                        <div class="button">
+                                                                            <button class="cssbuttons-io-button"> CHECK
+                                                                                <div class="icon">
+                                                                                    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
+                                                                                </div>
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--CONTENIDO FIN-->
+                                                    </div>
+                                                </div>
+                                            </main>
+                                        </section>
+                                        <!-- MAIN CONTENEDOR FIN -->
+                                    </body>
+                                    </html>

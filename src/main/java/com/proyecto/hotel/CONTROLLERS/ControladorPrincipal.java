@@ -2,13 +2,16 @@ package com.proyecto.hotel.CONTROLLERS;
 
 import com.proyecto.hotel.ENTITIES.Clientes;
 import com.proyecto.hotel.ENTITIES.Habitaciones;
+import com.proyecto.hotel.ENTITIES.Servicio;
 import com.proyecto.hotel.SERVICES.ClientesSERVICE;
 import com.proyecto.hotel.SERVICES.DisponibilidadSERVICE;
 import com.proyecto.hotel.SERVICES.HabitacionesSERVICE;
 import com.proyecto.hotel.SERVICES.PabellonSERVICE;
 import com.proyecto.hotel.SERVICES.PisosSERVICE;
+import com.proyecto.hotel.SERVICES.ServicioSERVICE;
 import com.proyecto.hotel.SERVICES.TipoClienteSERVICE;
 import com.proyecto.hotel.SERVICES.TipoHabitacionSERVICE;
+import com.proyecto.hotel.SERVICES.TipoServicioSERVICE;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -42,6 +45,13 @@ public class ControladorPrincipal {
     
     @Autowired
     private TipoHabitacionSERVICE tipoHabitacionService;
+    
+    @Autowired
+    private ServicioSERVICE servicioService;
+    
+    @Autowired 
+    private TipoServicioSERVICE tipoServicioService;
+    
     
     /*-------------- INICIO -------------*/
      @GetMapping("/")
@@ -145,6 +155,49 @@ public class ControladorPrincipal {
     public String eliminarClientes(Clientes clientes){
         clientesService.eliminarClientes(clientes);
         return "redirect:/clientes";
+    }
+    
+    /*------------------ CRUD SERVICIO ----------------*/
+    
+    @GetMapping("/servicio")
+    public String listarServicio(Model model){
+       var servicio = servicioService.listarServicio();
+       model.addAttribute("servicio", servicio);
+        return "listarServicios";     
+    }
+    
+    @GetMapping("/agregarServicio")
+    public String agregarServicio(Servicio servicio , Model model){
+        var tipoServicio = tipoServicioService.listaTipoServicio();
+        model.addAttribute("tipoServicio", tipoServicio);
+        var disponibilidad = disponibilidadService.listarDisponibilidad();
+        model.addAttribute("disponibilidad", disponibilidad);
+        
+        model.addAttribute("servicio", servicio);
+        return "mantenimientoServicio";    
+    }
+    
+    @PostMapping("/guardarServicio")
+    public String guardarServicio(Servicio servicio){
+        servicioService.guardarServicio(servicio);
+        return "redirect:/servicio";
+    }
+    
+    @GetMapping("/editarServicio/{cod_serv}")
+    public String editarServicio(Servicio servicio , Model model){
+        servicio = servicioService.buscarServicio(servicio);
+        model.addAttribute("servicio", servicio);
+        var tipoServicio = tipoServicioService.listaTipoServicio();
+        model.addAttribute("tipoServicio", tipoServicio);
+        var disponibilidad = disponibilidadService.listarDisponibilidad();
+        model.addAttribute("disponibilidad", disponibilidad);
+        return "mantenimientoServicio";      
+    }
+    
+    @GetMapping("/eliminarServicio/{cod_serv}")
+    public String eliminarservicio(Servicio servicio){
+        servicioService.eliminarServicio(servicio);
+        return "redirect:/servicio";
     }
     
 }

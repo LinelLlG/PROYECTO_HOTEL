@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tb_tipoContrato")
+@Table(name = "tb_tipocontrato")
 public class TipoContrato implements Serializable{
     
     @Id

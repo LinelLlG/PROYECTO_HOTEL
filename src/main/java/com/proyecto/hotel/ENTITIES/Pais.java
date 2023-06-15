@@ -1,5 +1,6 @@
 package com.proyecto.hotel.ENTITIES;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
@@ -15,16 +16,24 @@ import lombok.Data;
 @Table(name = "tb_pais")
 public class Pais implements Serializable{
     
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cod_pais;
 
     private String nom_pais;
 
-    @OneToMany(mappedBy = "pais")
+    @JsonIgnore
+     @OneToMany(mappedBy = "pais")
     private List<Proveedor> listaProveedor;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "pais")
     private List<Sede> listaSede;
+    
+    
+
+
     
 }

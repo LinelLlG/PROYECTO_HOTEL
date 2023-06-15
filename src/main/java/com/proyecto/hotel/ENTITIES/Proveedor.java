@@ -18,6 +18,8 @@ import lombok.Data;
 @Table(name = "tb_proveedor")
 public class Proveedor implements Serializable{
     
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cod_prov;
@@ -38,12 +40,14 @@ public class Proveedor implements Serializable{
     @ManyToOne
     @JoinColumn(name="cod_pais")
     private Pais pais;
+    
+    @ManyToOne
+    @JoinColumn(name="cod_disp")
+    private Disponibilidad disponibilidad;
 
     @OneToMany(mappedBy = "proveedor")
     private List<Stock> listaStock;
 
-    @ManyToOne
-    @JoinColumn(name="cod_disp")
-    private Disponibilidad disponibilidad;
+    
     
 }

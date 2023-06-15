@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--INTEGRACIONES DE SIEMPRE-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,600;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b3a8f0ecfc.js" crossorigin="anonymous"></script>
+    <!--NECESARIAS PARA EL INDEX-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link th:href="@{./resources/css/index.css}" rel="stylesheet" type = "text/css">
+    <title>SYSTEM - HOTEL</title>
+    <link rel="shortcut icon" th:href="@{./resources/img/logo1.ico}">
+    <!--DATATABLES-->
+    <script hrf="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/datatables.min.js"></script>
+    </head>
+    <body>
+        <div th:insert="layout :: layout"></div>
+        
+        <section id="contenido">
+            <!-- MAIN -->
+		<main>
+			<div class="data">
+				<div class="content-data card">
+					<!--CONTENIDO INICIO-->
+					<div class="head-title">
+						<div class="left">
+							<h1>Lista de Proveedores</h1>
+							<ul class="breadcrumb">
+								<li>
+									<a href="#">Lista</a>
+								</li>
+								<li><i class="fa-solid fa-chevron-right"></i></li>
+								<li>
+									<a href="listarProveedores.html" class="active">Proveedores</a>
+								</li>
+							</ul>
+						</div>
+						<div class="inputFunction">
+							<a th:href="@{/agregarProveedores}" class="btn-download">
+								<i class='bx bx-plus-circle'></i>
+								<span>REGISTRAR</span>
+							</a>
+						</div>
+					</div>
+					<div class="table-data">
+						<div class="order" th:if="${proveedor != null and !proveedor.empty  }">
+							<div class="head">
+								<h3>Todas las Habitaciones</h3>
+								<input type="search" class="inputSearch" id="searchTerm" onkeyup="doSearch()" onkeypress="return event.keyCode != 13;">
+								<button style="border: none; color:#58555E;"><i class="fa-solid fa-magnifying-glass"></i></button>
+							</div>
+							<div class="tabla-scroll">
+								<table id="tablaProveedores">
+									<thead>
+										<tr>
+											<!--<th>Código</th>-->
+											<th>Codigo</th>
+											<th>RUC</th>
+											<th>Nombre</th>
+											<th>Rep. Legal</th>
+											<th>Direccion</th>
+											<th>Teléfono</th>
+											<th>Email</th>
+											<th>Fec. Registro</th>
+											<th>Pais</th>
+											<th>Sede</th>
+											<th>Sucursal</th>
+											<th>Disponibilidad</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="proveedores : ${proveedor}">
+											<!--<td th:text="${habitacion.cod_hab}"></td>-->
+											<td th:text="${proveedores.cod_prov}"></td>
+											<td th:text="${proveedores.ruc_prov}"></td>
+											<td th:text="${proveedores.nom_prov}"></td>
+											<td th:text="${proveedores.rep_legal_prov}"></td>
+											<td th:text="${proveedores.dir_prov}"></td>
+											<td th:text="${proveedores.tlf_prov}"></td>
+											<td th:text="${proveedores.email_prov}"></td>
+											<td th:text="${proveedores.fec_reg_prov}"></td>
+											<td th:text="${proveedores.pais.nom_pais}"></td>
+											<td th:text="${proveedores.sede.nom_sed}"></td>
+											<td th:text="${proveedores.suc_prov}"></td>
+											<td><span class="status dispo" th:text="${proveedores.disponibilidad.disponibilidad}"></span></td>
+											<td class="td-contenedor-botones"><a class="status btn-edit" th:href="@{/editarHabitaciones/}+${proveedores.cod_prov}"><i class='bx bx-edit'></i></a></td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr class='noSearch hide'>
+											<td colspan="10"></td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--CONTENIDO FIN-->
+				</div>
+			</div>
+		</main>
+            </section>
+<!-- MAIN CONTENEDOR FIN -->
+    </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <!--SCRIPTS INICIO-->
+	<script>
+		// DATATABLES INICIO
+		$(document).ready( function () {
+		$('#tablaProveedores').DataTable({
+			paging:false,
+			deferRender:true,
+			responsive:true,
+			searching:false,
+			info:true,
+			language:{
+				url:'//cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json'
+			},
+			dom: 'Bfrtip',
+				buttons:[
+					{
+						extend: 'pdf',
+						text: '<i class="bx bxs-file-pdf"></i>  PDF',
+						titleAttr: 'Exportar a Pdf',
+						className:'btn btn-light'
+					},
+					{
+						extend: 'csv',
+						text: '<i class="bx bxs-cylinder"></i>  CSV',
+						titleAttr: 'Exportar a CSV',
+						className:'btn btn-light'
+					},
+					{
+						extend: 'excel',
+						text: '<i class="bx bx-table"></i>  EXCEL',
+						titleAttr: 'Exportar a EXCEL',
+						className:'btn btn-light'
+					}
+				]
+			});
+		} );
+		//FIN DATATABLES
+
+		//SEARCH INICIO
+		function doSearch()
+			{
+				const tableReg = document.getElementById('tablaProveedores');
+				const searchText = document.getElementById('searchTerm').value.toLowerCase();
+				let total = 0;
+
+
+				for (let i = 1; i < tableReg.rows.length; i++) {
+
+					if (tableReg.rows[i].classList.contains("noSearch")) {
+						continue;
+					}
+
+					let found = false;
+					const cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+
+					for (let j = 0; j < cellsOfRow.length && !found; j++) {
+						const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+
+						if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
+							found = true;
+							total++;
+						}
+					}
+					if (found) {
+						tableReg.rows[i].style.display = '';
+					} else {
+
+						tableReg.rows[i].style.display = 'none';
+					}
+				}
+				const lastTR=tableReg.rows[tableReg.rows.length-1];
+				const td=lastTR.querySelector("td");
+				lastTR.classList.remove("hide", "red");
+				if (searchText == "") {
+					lastTR.classList.add("hide");
+				} else if (total) {
+					td.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"");
+				} else {
+					lastTR.classList.add("red");
+					td.innerHTML="No se han encontrado coincidencias";
+				}
+			}
+		//SEARCH FIN
+	</script>
+    
+</html>

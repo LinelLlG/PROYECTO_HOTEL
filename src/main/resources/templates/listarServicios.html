@@ -45,12 +45,9 @@
 							</ul>
 						</div>
 						<div class="inputFunction">
-							<a href="#" class="btn-filtro1">
-								<i class='bx bxs-face'></i>
-							</a>
-							<a href="#" class="btn-filtro2">
-								<i class='bx bx-building-house'></i>
-							</a>
+							<a href="#" class="btn-deshabilitado">
+                                                                                                                                                                            <i class='bx bx-user-x' ></i>
+                                                                                                                                                                        </a>
 							<a th:href="@{/agregarServicio}" class="btn-download">
 								<i class='bx bx-plus-circle'></i>
 								<span>REGISTRAR</span>
@@ -73,7 +70,7 @@
 										<th>Descripción</th>
 										<th>Tipo</th>
 										<th>Precio</th>
-										<th>Disponibilidad</th>										                                                                                                                                                                                                                               
+										<!--<th>Disponibilidad</th>-->
 										<th></th>
 									</tr>
 								</thead>
@@ -83,14 +80,14 @@
 										<td th:text="${servicio.des_serv}"></td>
 										<td th:text="${servicio.tipoServicio.nom_tip_serv}"></td>
 										<td th:text="${servicio.pre_serv}"></td>																							
-                                                                                <td><span class="status dispo" th:text="${servicio.disponibilidad.disponibilidad}"></span></td>
+                                                                                <!--<td><span class="status dispo" th:text="${servicio.disponibilidad.disponibilidad}"></span></td>-->
 											<td class="td-contenedor-botones"><a class="status btn-edit" th:href="@{/editarServicio/}+${servicio.cod_serv}"><i class='bx bx-edit'></i></a></td>
                                                                                         
 									</tr>
 								</tbody>
 								<tfoot>
 									<tr class='noSearch hide'>
-										<td colspan="10"></td>
+										<td colspan="4"></td>
 									</tr>
 								</tfoot>
 							</table>
@@ -109,7 +106,7 @@
 	<script>
 		// DATATABLES INICIO
 		$(document).ready( function () {
-		$('#tablaClientes').DataTable({
+		$('#tablaServicio').DataTable({
 			paging:false,
 			deferRender:true,
 			responsive:true,
@@ -146,7 +143,7 @@
 		//SEARCH INICIO
 		function doSearch()
 			{
-				const tableReg = document.getElementById('tablaClientes');
+				const tableReg = document.getElementById('tablaServicio');
 				const searchText = document.getElementById('searchTerm').value.toLowerCase();
 				let total = 0;
 

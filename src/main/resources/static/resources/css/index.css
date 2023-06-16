@@ -904,6 +904,18 @@ main .btn-send:hover {
     grid-gap: 10px;
     font-weight: 400;
 }
+.head-title .inputFunction .btn-deshabilitado{
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 36px;
+    background: red;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 10px;
+    font-weight: 400;
+}
 .card{
     padding: 15px;
     font-size: 14px;

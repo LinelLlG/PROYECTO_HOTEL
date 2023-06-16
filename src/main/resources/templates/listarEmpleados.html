@@ -33,23 +33,20 @@
                                                                     <!--CONTENIDO INICIO-->
                                                                     <div class="head-title">
                                                                         <div class="left">
-                                                                            <h1>Lista de Empleados</h1>
+                                                                            <h1>Lista de Colaboradores</h1>
                                                                             <ul class="breadcrumb">
                                                                                 <li>
                                                                                     <a href="#">Lista</a>
                                                                                 </li>
                                                                                 <li><i class="fa-solid fa-chevron-right"></i></li>
                                                                                 <li>
-                                                                                    <a href="#" class="active">Empleados</a>
+                                                                                    <a href="#" class="active">Colaboradores</a>
                                                                                 </li>
                                                                             </ul>
                                                                         </div>
                                                                         <div class="inputFunction">
-                                                                            <a href="#" class="btn-filtro1">
-                                                                                <i class='bx bxs-face'></i>
-                                                                            </a>
-                                                                            <a href="#" class="btn-filtro2">
-                                                                                <i class='bx bx-building-house'></i>
+                                                                            <a href="#" class="btn-deshabilitado">
+                                                                                <i class='bx bx-user-x' ></i>
                                                                             </a>
                                                                             <a th:href="@{/agregarEmpleado}" class="btn-download">
                                                                                 <i class='bx bx-plus-circle'></i>
@@ -76,13 +73,13 @@
                                                                                                         <th>Email</th>
                                                                                                         <th>Celular</th>
                                                                                                         <th>Direccion</th>
-                                                                                                        <th>Fecha</th>
-                                                                                                        <th>NªHijos</th>
-                                                                                                        <th>Profesion</th>
-                                                                                                        <th>Sueldo</th>
-                                                                                                        <th>CODIGO CARGO</th>
-                                                                                                        <th>CODIGO TIPO CONTRATO</th>
-                                                                                                        <th>CODIGO DISPONIBILIDAD</th>
+                                                                                                        <th>Fecha Nacimiento</th>
+                                                                                                        <!--<th>NªHijos</th>-->
+                                                                                                        <!--<th>Profesion</th>-->
+                                                                                                        <!--<th>Sueldo</th>-->
+                                                                                                        <th>CARGO</th>
+                                                                                                        <th>CONTRATO</th>
+                                                                                                        <!--<th>CODIGO DISPONIBILIDAD</th>-->
                                                                                                         <th></th>
                                                                                                     </tr>
                                                                                                 </thead>
@@ -96,12 +93,12 @@
                                                                                                         <td th:text="${empleado.cel_emp}"></td>
                                                                                                         <td th:text="${empleado.dir_emp}"></td>
                                                                                                         <td th:text="${#dates.format(empleado.fec_nac_emp, 'dd/MM/yyyy')}"></td>
-                                                                                                        <td th:text="${empleado.hijos_emp}"></td>
-                                                                                                        <td th:text="${empleado.prof_emp}"></td>
-                                                                                                        <td th:text="${empleado.sueldo_emp}"></td>
+                                                                                                        <!--<td th:text="${empleado.hijos_emp}"></td>-->
+                                                                                                        <!--<td th:text="${empleado.prof_emp}"></td>-->
+                                                                                                        <!--<td th:text="${empleado.sueldo_emp}"></td>-->
                                                                                                         <td th:text="${empleado.cargo.nom_crg}"></td>
                                                                                                         <td th:text="${empleado.tipoContrato.des_con}"></td>
-                                                                                                        <td th:text="${empleado.disponibilidad.disponibilidad}"></td>
+                                                                                                        <!--<td th:text="${empleado.disponibilidad.disponibilidad}"></td>-->
                                                                                                      
 
                               

@@ -51,6 +51,9 @@
 							<a href="#" class="btn-filtro2">
 								<i class='bx bx-building-house'></i>
 							</a>
+                                                                                                                                                                        <a href="#" class="btn-deshabilitado">
+                                                                                                                                                                                                    <i class='bx bx-user-x' ></i>
+                                                                                                                                                                                                </a>
 							<a th:href="@{/agregarClientes}" class="btn-download">
 								<i class='bx bx-plus-circle'></i>
 								<span>REGISTRAR</span>
@@ -78,7 +81,7 @@
 										<th>Correo</th>
 										<th>Direccion</th>
 										<th>Tipo</th>
-                                                                                                                                                                                                                                                <th>Disponibilidad</th>
+                                                                                                                                                                                                                                                <!--<th>Disponibilidad</th>-->
 										<th></th>
 									</tr>
 								</thead>
@@ -92,14 +95,14 @@
 										<td th:text="${clientes.cel_cli}"></td>
 										<td th:text="${clientes.email_cli}"></td>
 										<td th:text="${clientes.dir_cli}"></td>
-										<td th:text="${clientes.tipoCliente.nom_tip_cli}"></td>
-                                                                                                                                                                                                                                                <td th:text="${clientes.disponibilidad.disponibilidad}"></td>
+                                                                                                                                                                                                                                                <td><span class="status dispo" th:text="${clientes.tipoCliente.nom_tip_cli}"></span></td>
+                                                                                                                                                                                                                                                <!--<td th:text="${clientes.disponibilidad.disponibilidad}"></td>-->
 										<td class="td-contenedor-botones"><a class="status btn-edit"><i class='bx bx-edit'></i></a></td>
 									</tr>
 								</tbody>
 								<tfoot>
 									<tr class='noSearch hide'>
-										<td colspan="10"></td>
+										<td colspan="9"></td>
 									</tr>
 								</tfoot>
 							</table>
@@ -198,5 +201,5 @@
 			}
 		//SEARCH FIN
 	</script>
-    
+        
 </html>

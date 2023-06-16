@@ -234,10 +234,11 @@ li {
 /* ==== SIDEBAR ==== */
 /* CONTENT */
 #content {
-	position: absolute;
+	position: fixed;
 	width: calc(100% - 260px);
 	left: 260px;
 	transition: all .3s ease;
+                        z-index: 10;
 }
 #sidebar.hide + #content {
 	width: calc(100% - 60px);

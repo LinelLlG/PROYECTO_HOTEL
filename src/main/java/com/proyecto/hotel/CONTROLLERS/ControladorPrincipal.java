@@ -1,8 +1,11 @@
 package com.proyecto.hotel.CONTROLLERS;
 
 import com.proyecto.hotel.ENTITIES.Clientes;
+import com.proyecto.hotel.ENTITIES.Disponibilidad;
 import com.proyecto.hotel.ENTITIES.Empleado;
 import com.proyecto.hotel.ENTITIES.Habitaciones;
+import com.proyecto.hotel.ENTITIES.Proveedor;
+import com.proyecto.hotel.ENTITIES.Sede;
 import com.proyecto.hotel.ENTITIES.Servicio;
 import com.proyecto.hotel.SERVICES.CargoSERVICE;
 import com.proyecto.hotel.SERVICES.ClientesSERVICE;
@@ -10,12 +13,16 @@ import com.proyecto.hotel.SERVICES.DisponibilidadSERVICE;
 import com.proyecto.hotel.SERVICES.EmpleadoSERVICE;
 import com.proyecto.hotel.SERVICES.HabitacionesSERVICE;
 import com.proyecto.hotel.SERVICES.PabellonSERVICE;
+import com.proyecto.hotel.SERVICES.PaisService;
 import com.proyecto.hotel.SERVICES.PisosSERVICE;
+import com.proyecto.hotel.SERVICES.ProveedorService;
+import com.proyecto.hotel.SERVICES.SedeService;
 import com.proyecto.hotel.SERVICES.ServicioSERVICE;
 import com.proyecto.hotel.SERVICES.TipoClienteSERVICE;
 import com.proyecto.hotel.SERVICES.TipoContratoSERVICE;
 import com.proyecto.hotel.SERVICES.TipoHabitacionSERVICE;
 import com.proyecto.hotel.SERVICES.TipoServicioSERVICE;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -23,7 +30,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @Slf4j
@@ -65,9 +74,19 @@ public class ControladorPrincipal {
     @Autowired
     private TipoContratoSERVICE tipoContratoSERVICE;
     
+    @Autowired
+    private ProveedorService proveedorService;
+    
+    @Autowired
+    private SedeService sedeService;
+    
+     @Autowired
+    private PaisService paisService;
+    
     
     
     /*-------------- INICIO -------------*/
+    
      @GetMapping("/")
     public String inicio(Model model, @AuthenticationPrincipal User user){        
         log.info("Ejectuando el controlador Spring MVC");
@@ -77,6 +96,7 @@ public class ControladorPrincipal {
     }
     
     /*----------------CRUD HABITACIONES----------------*/
+    
     @GetMapping("/habitaciones")
     public String listarHabitaciones(Model model){
         var habitaciones = habitacionesService.listarHabitaciones();
@@ -215,6 +235,7 @@ public class ControladorPrincipal {
     }
     
     /*------------------ CRUD EMPLEADOS ----------------*/
+    
     @GetMapping("/empleado")
     public String ListarEmpleados(Model model){
         var empleado = empleadoSERVICE.listarEmpleados();
@@ -262,6 +283,60 @@ public class ControladorPrincipal {
     public String eliminarEmpleados(Empleado empleado){
         empleadoSERVICE.eliminarEmpleados(empleado);
         return "redirect:/empleado";
+    }
+    
+    /*------------CRUD PROVEEDORES--------------*/
+    
+    @GetMapping("/proveedores")
+    public String listarProveedores(Model model){
+        
+        var proveedores = proveedorService.listarProveedor();
+        model.addAttribute("proveedor", proveedores);
+        
+        return "listarProveedores";
+    }
+    
+    @GetMapping("/registrarProveedor")
+    public String registrarProveedores(Proveedor proveedor, Model model){
+        
+        var pais = paisService.listarPais();
+        var sede = sedeService.listarSede();
+        
+        model.addAttribute("pais", pais);
+        model.addAttribute("sede", sede);
+      
+        return "mantenimientoProveedor";
+    }
+    
+    
+    @GetMapping("/editarProveedor/{cod_prov}")
+    public String agregarProveedores(Proveedor proveedor, Model model){
+        
+        var pais = paisService.listarPais();
+        var sede = sedeService.listarSede();
+        proveedor = proveedorService.buscarProveedor(proveedor);
+        
+        model.addAttribute("pais", pais);
+        model.addAttribute("sede", sede);
+        model.addAttribute("proveedor", proveedor);
+      
+        return "mantenimientoProveedor";
+    }
+    
+    @PostMapping("/guardarProveedor")
+    public String guardarProveedor(Proveedor proveedor){
+        var disp = new Disponibilidad();
+        disp.setCod_disp(1L);
+        proveedor.setDisponibilidad(disp);
+        proveedorService.guardarProveedor(proveedor);
+        return "redirect:/proveedores";
+    }
+    
+    @GetMapping("/sede/{codigoPais}")
+    @ResponseBody
+    public List<Sede> obtenerSedes(@PathVariable("codigoPais") Long codigoPais) {
+        List<Sede> sedes = sedeService.listSedeByPais(codigoPais);
+        return sedes;
     }
     
 }

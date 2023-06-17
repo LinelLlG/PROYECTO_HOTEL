@@ -7,6 +7,7 @@ import com.proyecto.hotel.ENTITIES.Habitaciones;
 import com.proyecto.hotel.ENTITIES.Proveedor;
 import com.proyecto.hotel.ENTITIES.Sede;
 import com.proyecto.hotel.ENTITIES.Servicio;
+import com.proyecto.hotel.ENTITIES.Stock;
 import com.proyecto.hotel.SERVICES.CargoSERVICE;
 import com.proyecto.hotel.SERVICES.ClientesSERVICE;
 import com.proyecto.hotel.SERVICES.DisponibilidadSERVICE;
@@ -18,10 +19,12 @@ import com.proyecto.hotel.SERVICES.PisosSERVICE;
 import com.proyecto.hotel.SERVICES.ProveedorService;
 import com.proyecto.hotel.SERVICES.SedeService;
 import com.proyecto.hotel.SERVICES.ServicioSERVICE;
+import com.proyecto.hotel.SERVICES.StockSERVICE;
 import com.proyecto.hotel.SERVICES.TipoClienteSERVICE;
 import com.proyecto.hotel.SERVICES.TipoContratoSERVICE;
 import com.proyecto.hotel.SERVICES.TipoHabitacionSERVICE;
 import com.proyecto.hotel.SERVICES.TipoServicioSERVICE;
+import com.proyecto.hotel.SERVICES.TipoStockSERVICE;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +64,12 @@ public class ControladorPrincipal {
     
     @Autowired
     private ServicioSERVICE servicioService;
+    
+    @Autowired
+    private StockSERVICE stockService;
+    
+    @Autowired
+    private TipoStockSERVICE tipoStockService;
     
     @Autowired 
     private TipoServicioSERVICE tipoServicioService;
@@ -233,6 +242,54 @@ public class ControladorPrincipal {
         servicioService.eliminarServicio(servicio);
         return "redirect:/servicio";
     }
+    
+    /*------------------ CRUD STOCK ----------------*/
+    @GetMapping("/stock")
+    public String listarStock(Model model){
+       var stock = stockService.listarStock();
+       model.addAttribute("stock", stock);
+        return "listarStocks";     
+    }
+    
+    @GetMapping("/agregarStock")
+    public String agregarStock(Stock stock , Model model){
+        var tipoStock = tipoStockService.listaTipoStock();
+        model.addAttribute("tipoStock", tipoStock);
+        var proveedor = proveedorService.listarProveedor();
+        model.addAttribute("proveedor",proveedor);
+        var disponibilidad = disponibilidadService.listarDisponibilidad();
+        model.addAttribute("disponibilidad", disponibilidad);
+        
+        model.addAttribute("stock", stock);
+        return "mantenimientoStock";    
+    }
+    
+    @PostMapping("/guardarStock")
+    public String guardarStock(Stock stock){
+        stockService.guardarStock(stock);
+        return "redirect:/stock";
+    }
+    
+    @GetMapping("/editarStock/{cod_stock}")
+    public String editarStock(Stock stock , Model model){
+        stock = stockService.buscarStock(stock);
+        model.addAttribute("stock", stock);
+        var tipoStock = tipoStockService.listaTipoStock();
+        model.addAttribute("tipoStock", tipoStock);
+        var proveedor = proveedorService.listarProveedor();
+        model.addAttribute("proveedor",proveedor);
+        var disponibilidad = disponibilidadService.listarDisponibilidad();
+        model.addAttribute("disponibilidad", disponibilidad);
+        return "mantenimientoStock";      
+    }
+    
+    @GetMapping("/eliminarStock/{cod_stock}")
+    public String eliminarStock(Stock stock){
+        stockService.eliminarStock(stock);
+        return "redirect:/stock";
+    }
+    
+    
     
     /*------------------ CRUD EMPLEADOS ----------------*/
     

@@ -116,6 +116,24 @@ li {
 	transition: all .3s ease;
 	padding: 0 6px;
 }
+.agua{
+	color: rgb(42, 141, 158);
+	animation: color1 1.5s linear infinite;
+}
+@keyframes color1{
+	0%{color: rgb(42, 141, 158);}
+	50%{color: var(--first-color);}
+	100%{color: rgb(42, 141, 158);}
+}
+.cates{
+	color: var(--first-color);
+	animation: color2 1.5s linear infinite;
+}
+@keyframes color2{
+	0%{color: var(--first-color);}
+	50%{color: rgb(42, 141, 158);}
+	100%{color: var(--first-color);}
+}
 #sidebar .icon {
 	min-width: 48px;
 	display: flex;
@@ -155,10 +173,17 @@ li {
 	border-radius: 10px;
 	margin: 4px 0;
 	white-space: nowrap;
+                        animation: color 1.5s linear infinite;
+}
+
+@keyframes color{
+	0%{color: var(--text-color);}
+	50%{color: var(--first-color);}
+	100%{color: var(--text-color);}
 }
 #sidebar .side-menu > li > a:hover {
 	background: var(--body-color);
-    color: var(--first-color);
+                        color: var(--first-color);
 }
 #sidebar .side-menu > li > a.active .icon-right {
 	transform: rotateZ(90deg);
@@ -166,7 +191,14 @@ li {
 #sidebar .side-menu > li > a.active,
 #sidebar .side-menu > li > a.active:hover {
 	background: var(--first-color);
-    color: var(--container-color);
+                        color: var(--container-color);
+	animation: none;
+	animation: fondo 1.5s linear infinite;
+}
+@keyframes fondo{
+	0%{background: var(--first-color);}
+	50%{background: rgb(42, 141, 158);}
+	100%{background: var(--first-color);}
 }
 #sidebar .divider {
 	margin-top: 24px;
@@ -219,10 +251,16 @@ li {
 	align-items: center;
 	padding: 12px 0;
 	color: var(--container-color);
-    background: var(--first-color);
+                        background: var(--first-color);
 	transition: all .3s ease;
 	border-radius: 5px;
 	font-weight: 600;
+                        animation: cambio 1.5s linear infinite;
+}
+@keyframes cambio{
+	0%{background: var(--first-color);}
+	50%{background: rgb(42, 141, 158);}
+	100%{background: var(--first-color);}
 }
 #sidebar .btn-upgrade:hover {
 	background: rgb(42, 141, 158);
@@ -1099,6 +1137,182 @@ form .button button{
    }
 /*BOTON DE REGISTO FIN*/
 /*==========REGISTRO FIN========*/
+
+/*RESERVAS - LISTA*/
+.box-container{
+	display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 1.5rem;
+}
+.box-container .box{
+    padding: 2.5rem;
+    background: var(--body-color);
+    border-radius: 20px;
+    border:	2px solid var(--first-color);
+    box-shadow: var(--box-shadow);
+    position: relative;
+    overflow: hidden;
+	display: grid;
+    align-items: center;
+	justify-content: center;
+	text-align: center;
+	animation: borde 1s linear infinite;
+}
+@keyframes borde{
+	0%{border:	2px solid var(--first-color);}
+	50%{border:	2px solid rgb(42, 141, 158);}
+	100%{border:	2px solid var(--first-color);}
+}
+.box-container .box .div-image{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.box-container .box img{
+    height: 8rem;
+    margin: 1rem 0;
+}
+.box-container .box .nomHabitacion{
+    color: var(--text-color);
+    font-size: 1.5rem;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+.box-container .box .nomCliente{
+    color: var(--text-color);
+    font-size: 1rem;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+.box-container .box .div-estado{
+	background: var(--container-color);
+	margin-top: 0.4rem;
+	padding-top: 8px;
+	padding-bottom: 2px;
+	border-radius: 36px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+.box-container .box .nomEstado{
+    color: var(--first-color);
+    font-size: 0.8rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	animation: nombre 1.5s linear infinite;
+}
+@keyframes nombre{
+	0%{color: var(--first-color);}
+	50%{color: rgb(42, 141, 158);}
+	100%{clor: var(--first-color);}
+}
+.box-container .box .btn-detalle{
+	background: var(--first-color);
+    color: var(--container-color);
+    font-weight: 400;
+    font-size: 1.5rem;
+	margin-top: 1rem;
+	border: none;
+	border-radius: 36px;
+	padding: 5px 0;
+	animation: boton 1.5s linear infinite;
+}
+@keyframes boton{
+	0%{background: var(--first-color);}
+	50%{background: rgb(42, 141, 158);}
+	100%{background: var(--first-color);}
+}
+.div-a{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin-top: 1rem;
+}
+.btn-buscar{
+	width: 100%;
+	background: var(--first-color);
+	color: var(--container-color);
+	border: none;
+	padding: 5px;
+	border-radius: 36px;
+	transition: all 0.2s ease;
+	animation: boton 1.5s linear infinite;
+}
+.btn-buscar:hover{
+	letter-spacing: 1px;
+	font-weight: 300;
+	transition: all 0.2s ease;
+	color: var(--container-color);
+}
+/*mMODAL ELIMINACION LOGICA*/
+
+.modal-content.eliminar{
+	background: var(--container-color);
+	border: none;
+	outline: none;
+	padding: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.modal-content.eliminar .form-eliminar{
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+.modal-content.eliminar .form-eliminar .form-eliminar-img{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.modal-content.eliminar .form-eliminar .form-eliminar-img img{
+	width: 30%;
+}
+.modal-content.eliminar .form-eliminar .form-eliminar-texto{
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin-top: 1.5rem;
+}
+.modal-content.eliminar .form-eliminar .form-eliminar-texto h2{
+	color: var(--text-color);
+	font-weight: 500;
+	font-size: 1.5rem;
+}
+.modal-content.eliminar .form-eliminar .form-eliminar-texto h3{
+	color: var(--text-color);
+	font-weight: 300;
+	font-size: 0.8rem;
+	margin-top: 0.5rem;
+}
+.modal-content.eliminar .form-eliminar .form-eliminar-btn{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 1.5rem;
+}
+.modal-content.eliminar .form-eliminar .form-eliminar-btn button{
+	width: 45%;
+	padding: 3px 0;
+	border-radius: 36px;
+	border: none;
+	margin-left: 2px;
+	margin-right: 2px;
+	font-weight: 300;
+}
+.modal-content.eliminar .form-eliminar .form-eliminar-btn button.si{
+	background: var(--first-color);
+	color: var(--container-color);
+}
+.modal-content.eliminar .form-eliminar .form-eliminar-btn button.no{
+	background: rgb(177, 12, 12);
+	color: var(--container-color);
+}
 
 /*====MODAL DE ACTUALIZAR INICIO===*/
 .boton-modal-cancelar{

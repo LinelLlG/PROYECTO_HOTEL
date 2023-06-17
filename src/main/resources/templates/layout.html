@@ -126,7 +126,11 @@
             <div class="profile">
                 <img  th:src="@{../resources/img/user1.png}" alt="">
                 <ul class="profile-link">
-                    <li><a href="login.html"><i class='bx bxs-exit icon'></i> Salir</a></li>
+                    <li>
+                        <form method="POST" th:action="@{/logout}">
+                            <a href="#" onclick="this.parentNode.submit();" class="nav-link"><i class="fas fa-user-times"></i> Salir</a>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </nav>

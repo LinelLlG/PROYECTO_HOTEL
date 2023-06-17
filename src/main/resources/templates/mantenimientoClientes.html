@@ -36,7 +36,7 @@
 							</ul>
 						</div>
 						<div class="inputFunction">
-							<a href="#" class="btn-cancel">
+							<a th:href="@{/clientes}" class="btn-cancel">
 								<i class='bx bx-x' ></i>
 								<span>CANCELAR</span>
 							</a>
@@ -45,45 +45,54 @@
 					<div class="table-data">
 						<div class="order">
 							<div class="container">
-								<form action="#">
+								<form id="formClientes" th:action="@{/guardarClientes}" method="post" th:object="${clientes}" enctype="multipart/form-data">
 									<div class="user-details">
 										<div class="input-box">
 											<span class="details">Código</span>
-											<input class="readonly" type="text" placeholder="El código autogenerado" required readonly>
+											<input class="readonly" name="cod_cli" th:field="*{cod_cli}" type="text" placeholder="El código autogenerado" value="0" readonly>
 										</div>
 										<div class="input-box">
 											<span class="details">Nombres</span>
-											<input type="text" placeholder="Ingrese los nombres" required>
+											<input type="text" name="nom_cli" th:field="*{nom_cli}" placeholder="Ingrese los nombres" required>
 										</div>
 										<div class="input-box">
 											<span class="details">Apellidos</span>
-											<input type="text" placeholder="Ingrese los apellidos" required>
+											<input type="text" name="ape_cli" th:field="*{ape_cli}" placeholder="Ingrese los apellidos" required>
 										</div>
 										<div class="input-box">
 											<span class="details">Dni</span>
-											<input type="text" placeholder="Ingrese el DNI" required>
+											<input type="text" name="dni_cli" th:field="*{dni_cli}" placeholder="Ingrese el DNI" required>
 										</div>
 										<div class="input-box">
 											<span class="details">Ruc</span>
-											<input type="text" placeholder="Ingrese el RUC">
+											<input type="text" name="ruc_cli" th:field="*{ruc_cli}" placeholder="Ingrese el RUC">
 										</div>
 										<div class="input-box">
 											<span class="details">Teléfono</span>
-											<input type="text" placeholder="Ingrese el teléfono" required>
+											<input type="text" name="cel_cli" th:field="*{cel_cli}" placeholder="Ingrese el teléfono" required>
 										</div>
 										<div class="input-box">
 											<span class="details">Correo</span>
-											<input type="text" placeholder="Ingrese el correo" required>
+											<input type="email" name="email_cli" th:field="*{email_cli}" placeholder="Ingrese el correo" required>
 										</div>
 										<div class="input-box">
 											<span class="details">Dirección</span>
-											<input type="text" placeholder="Ingrese una dirección" required>
+											<input type="text" name="dir_cli" th:field="*{dir_cli}" placeholder="Ingrese una dirección" required>
 										</div>
 										<div class="input-box">
 											<span class="details">Tipo</span>
-											<select name="tipo_cliente" id="tipo_cliente">
-												<option value="0">Full Day</option>
-												<option value="1">Huésped</option>
+											<select name="nom_tip_cli" th:field="*{tipoCliente.cod_tip_cli}">
+												<option value=0>[Seleccione Tipo]</option>
+                                                                                                                                                                                                                                                                                                <option th:each="row:${tipoCliente}" 
+                                                                                                                                                                                                                                                                                                    th:text="${row.nom_tip_cli}"
+                                                                                                                                                                                                                                                                                                    th:value="${row.cod_tip_cli}"/>
+											</select>
+										</div>
+                                                                                                                                                                                                                                                <div class="input-box">
+											<span class="details">Disponibilidad</span>
+											<select name="disponibilidad" th:field="*{disponibilidad.cod_disp}" id="idDispo">
+												<option value="1">Si</option>
+					  							<option value="2">No</option>
 											</select>
 										</div>
 									</div>

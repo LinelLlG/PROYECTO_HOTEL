@@ -12,9 +12,9 @@
     <script src="https://kit.fontawesome.com/b3a8f0ecfc.js" crossorigin="anonymous"></script>
     <!--NECESARIAS PARA EL INDEX-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link th:href="@{./resources/css/index.css}" rel="stylesheet" type = "text/css">
+    <link th:href="@{../resources/css/index.css}" rel="stylesheet" type = "text/css">
     <title>SYSTEM - HOTEL</title>
-    <link rel="shortcut icon" th:href="@{./resources/img/logo1.ico}">
+    <link rel="shortcut icon" th:href="@{../resources/img/logo1.ico}">
     <!--DATATABLES-->
     <script hrf="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
@@ -97,7 +97,7 @@
 										<td th:text="${clientes.dir_cli}"></td>
                                                                                                                                                                                                                                                 <td><span class="status dispo" th:text="${clientes.tipoCliente.nom_tip_cli}"></span></td>
                                                                                                                                                                                                                                                 <!--<td th:text="${clientes.disponibilidad.disponibilidad}"></td>-->
-										<td class="td-contenedor-botones"><a class="status btn-edit"><i class='bx bx-edit'></i></a></td>
+										<td class="td-contenedor-botones"><a class="status btn-edit" th:href="@{/editarClientes/}+${clientes.cod_cli}"><i class='bx bx-edit'></i></a></td>
 									</tr>
 								</tbody>
 								<tfoot>

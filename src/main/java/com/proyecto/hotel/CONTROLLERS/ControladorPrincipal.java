@@ -177,7 +177,7 @@ public class ControladorPrincipal {
         return "mantenimientoClientes";
     }
     
-    @GetMapping("/guardarClientes")
+    @PostMapping("/guardarClientes")
     public String guardarClientes(Clientes clientes){
         clientesService.guardarClientes(clientes);
         return "redirect:/clientes";
@@ -191,7 +191,7 @@ public class ControladorPrincipal {
         model.addAttribute("tipoCliente", tipoCliente);
         var disponibilidad = disponibilidadService.listarDisponibilidad();
         model.addAttribute("disponibilidad", disponibilidad);
-        return "listarClientes";
+        return "mantenimientoClientes";
     }
     
     @GetMapping("eliminarClientes/{cod_cli}")

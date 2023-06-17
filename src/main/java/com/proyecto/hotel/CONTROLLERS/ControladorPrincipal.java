@@ -101,7 +101,7 @@ public class ControladorPrincipal {
         log.info("Ejectuando el controlador Spring MVC");
         log.info("usuario que hizo login: " + user );
         
-        return "layout";
+        return "dashboard";
     }
     
     /*----------------CRUD HABITACIONES----------------*/

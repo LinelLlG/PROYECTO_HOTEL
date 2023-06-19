@@ -20,8 +20,8 @@ public class Estado implements Serializable{
     private Long cod_est;
 
     private String des_est;
-/*
+
     @OneToMany(mappedBy = "estado")
     private List<Reserva> reserva;
-    */
+
 }

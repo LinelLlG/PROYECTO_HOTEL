@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -49,9 +50,7 @@ public class Habitaciones implements Serializable{
     @JoinColumn(name="cod_disp")
     private Disponibilidad disponibilidad;
 
-    /*
-    @JsonIgnore
     @OneToMany(mappedBy = "habitaciones")
     private List<Reserva> listaReserva;
-*/
+
 }

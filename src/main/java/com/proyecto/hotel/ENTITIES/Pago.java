@@ -20,8 +20,8 @@ public class Pago implements Serializable{
     private Long cod_pago;
 
     private String des_pago;
-/*
+
     @OneToMany(mappedBy = "pago")
     private List<Reserva> reserva;
-    */
+
 }

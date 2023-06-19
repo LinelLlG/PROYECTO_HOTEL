@@ -12,11 +12,15 @@ import com.proyecto.hotel.SERVICES.CargoSERVICE;
 import com.proyecto.hotel.SERVICES.ClientesSERVICE;
 import com.proyecto.hotel.SERVICES.DisponibilidadSERVICE;
 import com.proyecto.hotel.SERVICES.EmpleadoSERVICE;
+import com.proyecto.hotel.SERVICES.EstadoSERVICE;
 import com.proyecto.hotel.SERVICES.HabitacionesSERVICE;
+import com.proyecto.hotel.SERVICES.OrigenSERVICE;
 import com.proyecto.hotel.SERVICES.PabellonSERVICE;
+import com.proyecto.hotel.SERVICES.PagoSERVICE;
 import com.proyecto.hotel.SERVICES.PaisService;
 import com.proyecto.hotel.SERVICES.PisosSERVICE;
 import com.proyecto.hotel.SERVICES.ProveedorService;
+import com.proyecto.hotel.SERVICES.ReservaSERVICE;
 import com.proyecto.hotel.SERVICES.SedeService;
 import com.proyecto.hotel.SERVICES.ServicioSERVICE;
 import com.proyecto.hotel.SERVICES.StockSERVICE;
@@ -91,6 +95,18 @@ public class ControladorPrincipal {
     
      @Autowired
     private PaisService paisService;
+     
+     @Autowired
+     private EstadoSERVICE estadoService;
+     
+     @Autowired
+     private OrigenSERVICE origenService;
+     
+     @Autowired
+     private PagoSERVICE pagoService;
+     
+     @Autowired
+     private ReservaSERVICE ReservaService;
     
     
     
@@ -394,6 +410,15 @@ public class ControladorPrincipal {
     public List<Sede> obtenerSedes(@PathVariable("codigoPais") Long codigoPais) {
         List<Sede> sedes = sedeService.listSedeByPais(codigoPais);
         return sedes;
+    }
+    
+    /*-----------------CRUD RESERVAS-----------------*/
+    
+    @GetMapping("/reserva")
+    public String listarReservas(Model model){
+        var reserva = ReservaService.listarReservas();
+        model.addAttribute("reserva", reserva);
+        return "listarReservas";
     }
     
 }

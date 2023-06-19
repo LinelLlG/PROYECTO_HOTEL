@@ -20,8 +20,8 @@ public class Origen implements Serializable{
     private Long cod_orig;
 
     private String des_orig;
-/*
+
     @OneToMany(mappedBy = "origen")
     private List<Reserva> reserva;
-    */
+
 }

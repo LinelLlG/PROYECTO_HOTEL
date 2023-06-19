@@ -34,10 +34,10 @@ public class Clientes implements Serializable{
     @ManyToOne
     @JoinColumn(name="cod_tip_cli")
     private TipoCliente tipoCliente;
-    /*
+    
     @OneToMany(mappedBy = "clientes")
     private List<Reserva> listaReserva;
-
+/*
     @OneToMany(mappedBy = "clientes")
     private List<Boleta> listaBoletas;
     */

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--INTEGRACIONES DE SIEMPRE-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,600;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b3a8f0ecfc.js" crossorigin="anonymous"></script>
+    <!--NECESARIAS PARA EL INDEX-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link th:href="@{./resources/css/index.css}" rel="stylesheet" type = "text/css">
+    <title>SYSTEM - HOTEL</title>
+    <link rel="shortcut icon" th:href="@{../resources/img/logo1.ico}">
+    </head>
+    <body>
+        <div th:insert="layout :: layout"></div>
+        <section id="contenido">
+            <!-- MAIN -->
+		<main>
+			<div class="data">
+				<div class="content-data card">
+					<!--CONTENIDO INICIO-->
+					<div class="head-title">
+						<div class="left">
+							<h1>Reservas</h1>
+							<ul class="breadcrumb">
+								<li>
+									<a href="#">Lista</a>
+								</li>
+								<li><i class="fa-solid fa-chevron-right"></i></li>
+								<li>
+									<a href="#" class="active">Reservas</a>
+								</li>
+							</ul>
+						</div>
+						<div class="inputFunction">
+							<a href="#" class="btn-download">
+								<i class='bx bx-plus-circle'></i>
+								<span>REGISTRAR</span>
+							</a>
+						</div>
+					</div>
+						<!---->
+						<div class="box-container" th:if="${reserva!= null and !reserva.empty  }">
+							<form class="box" th:each="reserva:${reserva}">
+								<div class="div-image">
+									<img th:src="@{./resources/img/paltita.png}" alt="">
+								</div>
+								<h4 class="nomHabitacion" th:text="${reserva.habitaciones.nom_hab}"></h4>
+								<h4 class="nomCliente" th:text="${reserva.clientes.nom_cli}">Leonel</h4>
+								<h4 class="nomCliente" th:text="${reserva.clientes.ape_cli}">Llactas</h4>
+								<div class="div-estado">
+									<h4 class="nomEstado" th:text="${reserva.origen.des_orig}">En Espera</h4>
+								</div>
+								<button class="btn-detalle"><i class='bx bx-bed'></i></button>
+								<button class="btn-detalle"><i class='bx bx-money-withdraw'></i></button>
+							</form>
+						</div>
+						<!---->
+					<!--CONTENIDO FIN-->
+				</div>
+			</div>
+		</main>
+		<!-- MAIN CONTENEDOR FIN -->
+        </section>
+    </body>
+</html>

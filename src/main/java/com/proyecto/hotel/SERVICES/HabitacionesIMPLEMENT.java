@@ -36,5 +36,10 @@ public class HabitacionesIMPLEMENT implements HabitacionesSERVICE{
     public Habitaciones buscarHabitaciones(Habitaciones habitaciones) {
         return habitacionesDao.findById(habitaciones.getCod_hab()).orElse(null);
     }
+
+    @Override
+    public List<Habitaciones> listAllByNombre(String nom){
+        return habitacionesDao.listAllByNombre(nom);
+    }
     
 }

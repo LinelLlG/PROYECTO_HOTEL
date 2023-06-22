@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <!--INTEGRACIONES DE SIEMPRE-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,600;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b3a8f0ecfc.js" crossorigin="anonymous"></script>
+    <!--NECESARIAS PARA EL INDEX-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link th:href="@{../resources/css/index.css}" rel="stylesheet" type = "text/css">
+    <title>SYSTEM - HOTEL</title>
+    <link rel="shortcut icon" th:href="@{./resources/img/logo1.ico}">
+    </head>
+    <body>
+        <div th:insert="layout :: layout"></div>
+        <section id="contenido">
+            
+            <!-- MAIN -->
+		<main>
+			<div class="data">
+				<div class="content-data card">
+					<!--CONTENIDO INICIO-->
+					<div class="head-title">
+						<div class="left">
+							<h1>Nueva Reserva</h1>
+							<ul class="breadcrumb">
+								<li>
+									<a href="#">Registro</a>
+								</li>
+								<li><i class="fa-solid fa-chevron-right"></i></li>
+								<li>
+									<a href="#" class="active">Reserva</a>
+								</li>
+							</ul>
+						</div>
+						<div class="inputFunction">
+							<a th:href="@{/reservaPrueba}" class="btn-cancel">
+								<i class='bx bx-x' ></i>
+								<span>CANCELAR</span>
+							</a>
+						</div>
+					</div>
+					<div class="table-data">
+						<div class="order">
+							<div class="container">
+								<form id="formReserva" th:action="@{/guardarReserva}" method="post" th:object="${reserva}" enctype="multipart/form-data">
+									<div class="user-details">
+										<div class="input-box" style="display: none;">
+											<span class="details">Código Reserva</span>
+											<input class="readonly" type="text" placeholder="El código autogenerado" required readonly>
+										</div>
+										<div class="input-box" style="display: none;">
+											<span class="details">Codigo Cliente</span>
+											<input type="text" placeholder="El Codigo es autogenerado" required>
+										</div>
+										<div class="input-box">
+											<span class="details">Cliente</span>
+											<input type="text" placeholder="Ingrese los nombres" required>
+											<div class="div-a">
+												<a href="#" data-bs-toggle="modal" data-bs-target="#modalCliente" class="btn-buscar">Buscar</a>
+											</div>
+										</div>
+										<div class="input-box" style="display: none;">
+											<span class="details">Codigo Habitacion</span>
+											<input type="text" placeholder="El Codigo es autogenerado" required>
+										</div>
+										<div class="input-box">
+											<span class="details">Habitacion</span>
+											<input type="text" placeholder="Ingrese los apellidos" required>
+											<div class="div-a">
+												<a href="#" data-bs-toggle="modal" data-bs-target="#modalHabitacion" class="btn-buscar">Buscar</a>
+											</div>
+										</div>
+										<div class="input-box">
+											<span class="details">Check In</span>
+											<input type="date" required>
+										</div>
+										<div class="input-box">
+											<span class="details">Check Out</span>
+											<input type="date" required>
+										</div>
+										<div class="input-box">
+											<span class="details">Estado</span>
+											<select name="tipo_cliente" id="tipo_cliente">
+												<option value="0">En Espera</option>
+												<option value="1">Ocupada</option>
+												<option value="2">Salida</option>
+											</select>
+										</div>
+										<div class="input-box">
+											<span class="details">Pagado</span>
+											<select name="tipo_cliente" id="tipo_cliente">
+												<option value="0">Saldo 0%</option>
+												<option value="1">Saldo 50%</option>
+												<option value="2">Saldo 100%</option>
+											</select>
+										</div>
+										<div class="input-box">
+											<span class="details">Costo</span>
+											<input type="text" placeholder="S/00.00" required readonly>
+										</div>
+										<div class="input-box">
+											<span class="details">Modalidad de Pago</span>
+											<select name="tipo_cliente" id="tipo_cliente">
+												<option value="0">Tarjeta</option>
+												<option value="1">Efectivo</option>
+											</select>
+										</div>
+									</div>
+									<div class="button">
+										<button class="cssbuttons-io-button"> REGISTRAR
+											<div class="icon">
+											  <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
+											</div>
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!--CONTENIDO FIN-->
+				</div>
+			</div>
+		</main>
+		<!-- MAIN CONTENEDOR FIN -->
+            
+        </section>
+        
+        <!--MODAL DE BUSCAR CLIENTE-->
+	<div class="modal fade" id="modalCliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+		  <div class="modal-content modal-content-main">
+			<div class="modal-header">
+				<div class="left-modal">
+					<h1>Buscar Cliente</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Action</a>
+						</li>
+						<li><i class="fa-solid fa-chevron-right"></i></li>
+						<li>
+							<a href="#" class="active">Search</a>
+						</li>
+					</ul>
+					<div class="buscar-cliente">
+						<input type="text" placeholder="Nombre del Cliente">
+						<button>Buscar</button>
+					</div>
+				</div>
+			</div>
+			<div class="container-modal-cliente">
+				<!--CONTENIDO INICIO-->
+				<div class="table-data">
+					<div class="order">
+						<div class="tabla-scroll">
+						<table id="tablaClientes">
+							<thead>
+								<tr>
+									<th>Código</th>
+									<th>Nombre</th>
+									<th>Apellido</th>
+									<th>Dni</th>
+									<th>Tipo</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Leonel</td>
+									<td>Llactas Guzman</td>
+									<td>75966007</td>
+									<td>FullDay</td>
+									<td class="td-contenedor-botones"><button class="status btn-edit" data-bs-toggle="modal" data-bs-target="#modalActualizar"><i class='bx bx-plus'></i></button></td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr class='noSearch hide'>
+									<td colspan="10"></td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+					</div>
+				</div>
+				<!--CONTENIDO FIN-->
+			</div>
+		  </div>
+		</div>
+	  </div>
+	<!--MODAL DE CLIENTE FIN-->
+
+	<!--MODAL DE BUSCAR HABITACIONES-->
+	<div class="modal fade" id="modalHabitacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+		  <div class="modal-content modal-content-main">
+			<div class="modal-header">
+				<div class="left-modal">
+					<h1>Buscar Habitacion</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Action</a>
+						</li>
+						<li><i class="fa-solid fa-chevron-right"></i></li>
+						<li>
+							<a href="#" class="active">Search</a>
+						</li>
+					</ul>
+					<div class="buscar-cliente">
+						<input type="text" placeholder="Nombre del Cliente">
+						<button>Buscar</button>
+					</div>
+				</div>
+			</div>
+			<div class="container-modal-cliente">
+				<!--CONTENIDO INICIO-->
+				<div class="table-data">
+					<div class="order">
+						<div class="tabla-scroll">
+						<table id="tablaClientes">
+							<thead>
+								<tr>
+									<th>Código</th>
+									<th>Nombre</th>
+									<th>Tipo</th>
+									<th>Pabellon</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Los Lucumos</td>
+									<td>Quintuple</td>
+									<td>P-1</td>
+									<td class="td-contenedor-botones"><button class="status btn-edit" data-bs-toggle="modal" data-bs-target="#modalActualizar"><i class='bx bx-plus'></i></button></td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr class='noSearch hide'>
+									<td colspan="10"></td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+					</div>
+				</div>
+				<!--CONTENIDO FIN-->
+			</div>
+		  </div>
+		</div>
+	  </div>
+	<!--MODAL DE CLIENTE FIN-->
+        
+    </body>
+    
+    <!--SCRIPTS INICIO-->
+	<script>
+                
+               //FUNCION PARA LOS CLIENTES Y HABITACIONES
+               function cargarRequerimientos(){
+	
+}
+function cargarBines(){
+	
+}
+	$(document).on("click","#btn-consultar",function(){
+	
+	let ape;
+	ape=$("#idApellidos").val();
+	//limpiar tabla
+	$("#tableClientes tbody").empty();
+	
+	let boton = "<button class='status btn-edit btn-enviar' type='button' ><i class='bx bx-plus'></i></button>";
+	
+	
+	$.get("findPorApe?apellido="+ape,function(response){
+		console.log(response);
+		$.each(response,function(index,item){
+			$("#tableClientes").append("<tr>"+
+										"<td>"+item.cod_cli+"</td>"+
+										"<td>"+item.nom_cli+"</td>"+
+										"<td>"+item.ape_cli+"</td>"+
+										"<td>"+item.dni_cli+"</td>"+
+										
+										"<td>"+boton+"</td>"+
+										"</tr>");
+										
+		})
+	
+	})
+})
+	
+	$(document).on("click",".btn-enviar",function(){
+	
+	let cod,nom,ape;
+	cod=$(this).parents("tr").find("td")[0].innerHTML;
+	nom=$(this).parents("tr").find("td")[1].innerHTML;
+	ape=$(this).parents("tr").find("td")[2].innerHTML;
+	
+	$("#idCliente").val(cod);
+	$("#nomClie").val(nom + ' '+ ape);
+
+})
+
+
+$(document).on("click","#btn-consultar-habi",function(){
+	
+	let ape;
+	ape=$("#idNombreHabi").val();
+	//limpiar tabla
+	$("#tableHabi tbody").empty();
+	
+	let boton = "<button type='button' class='form-control btn btn-danger btn-enviar-habi' >X</button>";
+	
+	$.get("findPorNombre?nombre="+ape,function(response){
+		console.log(response);
+		$.each(response,function(index,item){
+			$("#tableHabi").append("<tr>"+
+										"<td>"+item.cod_hab+"</td>"+
+										"<td>"+item.nom_hab+"</td>"+
+										"<td>"+item.pre_fin+"</td>"+
+										"<td>"+item.tipoHabitacion.nom_tip_hab+"</td>"+
+										"<td>"+boton+"</td>"+
+										"</tr>");
+										
+		})
+	
+	})
+})
+
+
+$(document).on("click",".btn-enviar-habi",function(){
+	
+	let cod,nom,ape,tip;
+	cod=$(this).parents("tr").find("td")[0].innerHTML;
+	nom=$(this).parents("tr").find("td")[1].innerHTML;
+	pre=$(this).parents("tr").find("td")[2].innerHTML;
+	tip=$(this).parents("tr").find("td")[3].innerHTML;
+	
+	$("#idHabitacion").val(cod);
+	$("#nomHabitacion").val(nom);
+	$("#preHabitacion").val(pre);
+	$("#tipHabitacion").val(tip);
+
+})
+
+                
+                
+                </script>
+</html>

@@ -15,8 +15,14 @@ public class ReservaIMPLEMENT implements ReservaSERVICE{
 
     @Override
     @Transactional(readOnly = true)
-    public List<Reserva> listarReservas() {
+    public List<Reserva> listarReservasGeneral() {
         return (List<Reserva>)reservaDao.findAll();
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<Reserva> listarReservasActivas() {
+        return (List<Reserva>)reservaDao.listarReservasActivas();
     }
 
     @Override

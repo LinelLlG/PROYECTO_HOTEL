@@ -36,5 +36,10 @@ public class ClientesIMPLEMENT implements ClientesSERVICE{
     public Clientes bucarClientes(Clientes clientes) {
         return clientesDao.findById(clientes.getCod_cli()).orElse(null);
     }
-    
+
+    @Override
+    @Transactional
+    public List<Clientes> listAllByPaterno(String ape) {
+        return clientesDao.listAllByPaterno(ape);
+    }    
 }

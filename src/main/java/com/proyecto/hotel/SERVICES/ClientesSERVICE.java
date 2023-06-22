@@ -7,6 +7,8 @@ public interface ClientesSERVICE {
     
     public List<Clientes> listarClientes();
     
+    public List<Clientes> listAllByPaterno(String ape);
+    
     public void guardarClientes(Clientes clientes);
     
     public void eliminarClientes(Clientes clientes);

@@ -5,6 +5,7 @@ import com.proyecto.hotel.ENTITIES.Disponibilidad;
 import com.proyecto.hotel.ENTITIES.Empleado;
 import com.proyecto.hotel.ENTITIES.Habitaciones;
 import com.proyecto.hotel.ENTITIES.Proveedor;
+import com.proyecto.hotel.ENTITIES.Reserva;
 import com.proyecto.hotel.ENTITIES.Sede;
 import com.proyecto.hotel.ENTITIES.Servicio;
 import com.proyecto.hotel.ENTITIES.Stock;
@@ -107,8 +108,6 @@ public class ControladorPrincipal {
      
      @Autowired
      private ReservaSERVICE ReservaService;
-    
-    
     
     /*-------------- INICIO -------------*/
     
@@ -416,9 +415,59 @@ public class ControladorPrincipal {
     
     @GetMapping("/reserva")
     public String listarReservas(Model model){
-        var reserva = ReservaService.listarReservas();
+        var reserva = ReservaService.listarReservasGeneral();
         model.addAttribute("reserva", reserva);
         return "listarReservas";
     }
+    
+    @GetMapping("/reservaPrueba")
+    public String listarReservasPrueba(Model model){
+        var reserva = ReservaService.listarReservasActivas();
+        model.addAttribute("reserva", reserva);
+        return "listarReservas";
+    }
+    
+    @GetMapping("/agregarReserva")
+    public String agregarReserva(Reserva reserva, Model model){
+        var clientes = clientesService.listarClientes();
+        model.addAttribute("clientes", clientes);
+        var habitaciones = habitacionesService.listarHabitaciones();
+        model.addAttribute("habitaciones", habitaciones);
+        var estado = estadoService.listarEstado();
+        model.addAttribute("estado", estado);
+        var origen = origenService.listarOrigen();
+        model.addAttribute("origen", origen);
+        var pago = pagoService.listarPago();
+        model.addAttribute("pago", pago);
+        
+        model.addAttribute("reserva", reserva);
+        return "mantenimientoReserva";
+    }
+    
+    @PostMapping("/guardarReserva")
+    public String guardarReserva(Reserva reserva){
+        ReservaService.guardarReservas(reserva);
+        return "redirect:/reservaPrueba";
+    }
+    
+    @GetMapping("/editarReserva/{cod_res}")
+    public String editarReserva(Reserva reserva, Model model){
+        var clientes = clientesService.listarClientes();
+        model.addAttribute("clientes", clientes);
+        var habitaciones = habitacionesService.listarHabitaciones();
+        model.addAttribute("habitaciones", habitaciones);
+        var estado = estadoService.listarEstado();
+        model.addAttribute("estado", estado);
+        var origen = origenService.listarOrigen();
+        model.addAttribute("origen", origen);
+        var pago = pagoService.listarPago();
+        model.addAttribute("pago", pago);
+        
+        reserva = ReservaService.buscarReservas(reserva);
+        model.addAttribute("reserva", reserva);
+        return "mantenimientoReserva";
+    }
+    
+    
     
 }

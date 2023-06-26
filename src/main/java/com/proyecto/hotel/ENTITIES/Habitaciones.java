@@ -1,5 +1,6 @@
 package com.proyecto.hotel.ENTITIES;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ import lombok.Data;
 @Table(name = "tb_habitaciones")
 public class Habitaciones implements Serializable{
     
+     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cod_hab;
@@ -29,6 +32,7 @@ public class Habitaciones implements Serializable{
     @JoinColumn(name="cod_pab")
     private Pabellon pabellon;
 
+    
     @ManyToOne
     @JoinColumn(name="cod_tip_hab")
     private TipoHabitacion tipoHabitacion;
@@ -50,6 +54,7 @@ public class Habitaciones implements Serializable{
     @JoinColumn(name="cod_disp")
     private Disponibilidad disponibilidad;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "habitaciones")
     private List<Reserva> listaReserva;
 

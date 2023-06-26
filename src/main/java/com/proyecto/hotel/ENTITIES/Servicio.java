@@ -15,6 +15,8 @@ import lombok.Data;
 @Table(name = "tb_servicio")
 public class Servicio implements Serializable{
     
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cod_serv;

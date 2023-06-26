@@ -40,6 +40,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -107,7 +109,7 @@ public class ControladorPrincipal {
      private PagoSERVICE pagoService;
      
      @Autowired
-     private ReservaSERVICE ReservaService;
+     private ReservaSERVICE reservaService;
     
     /*-------------- INICIO -------------*/
     
@@ -415,14 +417,14 @@ public class ControladorPrincipal {
     
     @GetMapping("/reserva")
     public String listarReservas(Model model){
-        var reserva = ReservaService.listarReservasGeneral();
+        var reserva = reservaService.listarReservasGeneral();
         model.addAttribute("reserva", reserva);
         return "listarReservas";
     }
     
     @GetMapping("/reservaPrueba")
     public String listarReservasPrueba(Model model){
-        var reserva = ReservaService.listarReservasActivas();
+        var reserva = reservaService.listarReservasActivas();
         model.addAttribute("reserva", reserva);
         return "listarReservas";
     }
@@ -446,7 +448,7 @@ public class ControladorPrincipal {
     
     @PostMapping("/guardarReserva")
     public String guardarReserva(Reserva reserva){
-        ReservaService.guardarReservas(reserva);
+        reservaService.guardarReservas(reserva);
         return "redirect:/reservaPrueba";
     }
     
@@ -463,11 +465,23 @@ public class ControladorPrincipal {
         var pago = pagoService.listarPago();
         model.addAttribute("pago", pago);
         
-        reserva = ReservaService.buscarReservas(reserva);
+        reserva = reservaService.buscarReservas(reserva);
         model.addAttribute("reserva", reserva);
         return "mantenimientoReserva";
     }
     
+        @GetMapping("/findPorApe/{apellido}")
+	@ResponseBody
+	public List<Clientes> findPorApe(@PathVariable("apellido") String ape) {
+		List<Clientes> data = clientesService.listAllByPaterno(ape+"%");
+		return data;
+	}
     
+        @GetMapping("/findPorNombre/{nombre}")
+	@ResponseBody
+	public List<Habitaciones> findPorNombre(@PathVariable("nombre") String nombre) {
+		var data = habitacionesService.listAllByNombre(nombre+"%");
+		return data;
+	}
     
 }

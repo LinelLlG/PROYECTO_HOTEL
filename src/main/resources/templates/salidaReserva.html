@@ -25,10 +25,10 @@
 					<!--CONTENIDO INICIO-->
 					<div class="head-title">
 						<div class="left">
-							<h1>Nueva Reserva</h1>
+							<h1>Salida Reserva</h1>
 							<ul class="breadcrumb">
 								<li>
-									<a href="#">Registro</a>
+									<a href="#">Salida</a>
 								</li>
 								<li><i class="fa-solid fa-chevron-right"></i></li>
 								<li>
@@ -56,7 +56,7 @@
 											<span class="details">Codigo Cliente</span>
 											<input type="text" placeholder="El Codigo es autogenerado" required id="idCliente" th:field="*{clientes.cod_cli}">
 										</div>
-										<div class="input-box">
+										<div class="input-box" style="display: none;">
 											<span class="details">Cliente</span>
 											<input type="text" placeholder="Ingrese los nombres"  id="nomClie" th:field="*{clientes.ape_cli}" >
                                                                                         <input type="text" placeholder="Ingrese los nombres"  id="nomCliente" th:field="*{clientes.nom_cli}" hidden="true">
@@ -69,35 +69,31 @@
 											<span class="details">Codigo Habitacion</span>
 											<input type="text" placeholder="El Codigo es autogenerado" required id="codHabitacion" th:field="*{habitaciones.cod_hab}">
 										</div>
-										<div class="input-box">
+										<div class="input-box" style="display: none;">
 											<span class="details">Habitacion</span>
 											<input type="text" placeholder="Ingrese la habitacion" required id="nomHabitacion" th:field="*{habitaciones.nom_hab}">
 											<div class="div-a">
 												<a href="#" data-bs-toggle="modal" data-bs-target="#modalHabitacion" class="btn-buscar">Buscar</a>
 											</div>
 										</div>
-										<div class="input-box">
+										<div class="input-box" style="display: none;">
 											<span class="details">Check In</span>
 											<input type="date" required th:field="*{check_in}">
 										</div>
-										<div class="input-box">
+										<div class="input-box" style="display: none;">
 											<span class="details">Check Out</span>
 											<input type="date" required th:field="*{check_out}">
 										</div>
 										<div class="input-box">
 											<span class="details">Saldo</span>
-											<select name="estado" id="estado" th:field="*{estado.cod_est}">
-                                                                                            <option value="1">Saldo 0%</option>
-                                                                                            <option value="2">Saldo 50%</option>
+											<select name="estado" id="estado" th:field="*{estado.cod_est}" readonly>
                                                                                             <option value="3">Saldo 100%</option>
 												
 											</select>
 										</div>
                                                                                 <div class="input-box">
 											<span class="details">Estado</span>
-											<select name="origen" id="origen" th:field="*{origen.cod_orig}">
-												<option value="1">En Espera</option>
-												<option value="2">Ocupada</option>
+											<select name="origen" id="origen" th:field="*{origen.cod_orig}" readonly>
 												<option value="3">Salida</option>
 											</select>
 										</div>
@@ -150,7 +146,7 @@
 						</li>
 					</ul>
 					<div class="buscar-cliente">
-						<input type="text" placeholder="Apellido del Cliente" id="idApellidos" name="idBuscar">
+						<input type="text" placeholder="Nombre del Cliente" id="idApellidos" name="idBuscar">
 						<button type="button" id="btn-consultar">Buscar</button>
 					</div>
 				</div>

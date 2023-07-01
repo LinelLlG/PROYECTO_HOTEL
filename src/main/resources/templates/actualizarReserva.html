@@ -25,10 +25,10 @@
 					<!--CONTENIDO INICIO-->
 					<div class="head-title">
 						<div class="left">
-							<h1>Nueva Reserva</h1>
+							<h1>Actualizar Reserva</h1>
 							<ul class="breadcrumb">
 								<li>
-									<a href="#">Registro</a>
+									<a href="#">Actualizar</a>
 								</li>
 								<li><i class="fa-solid fa-chevron-right"></i></li>
 								<li>
@@ -56,7 +56,7 @@
 											<span class="details">Codigo Cliente</span>
 											<input type="text" placeholder="El Codigo es autogenerado" required id="idCliente" th:field="*{clientes.cod_cli}">
 										</div>
-										<div class="input-box">
+										<div class="input-box" style="display: none;" >
 											<span class="details">Cliente</span>
 											<input type="text" placeholder="Ingrese los nombres"  id="nomClie" th:field="*{clientes.ape_cli}" >
                                                                                         <input type="text" placeholder="Ingrese los nombres"  id="nomCliente" th:field="*{clientes.nom_cli}" hidden="true">
@@ -69,7 +69,7 @@
 											<span class="details">Codigo Habitacion</span>
 											<input type="text" placeholder="El Codigo es autogenerado" required id="codHabitacion" th:field="*{habitaciones.cod_hab}">
 										</div>
-										<div class="input-box">
+										<div class="input-box" style="display: none;">
 											<span class="details">Habitacion</span>
 											<input type="text" placeholder="Ingrese la habitacion" required id="nomHabitacion" th:field="*{habitaciones.nom_hab}">
 											<div class="div-a">
@@ -150,7 +150,7 @@
 						</li>
 					</ul>
 					<div class="buscar-cliente">
-						<input type="text" placeholder="Apellido del Cliente" id="idApellidos" name="idBuscar">
+						<input type="text" placeholder="Nombre del Cliente" id="idApellidos" name="idBuscar">
 						<button type="button" id="btn-consultar">Buscar</button>
 					</div>
 				</div>

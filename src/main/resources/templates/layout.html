@@ -49,8 +49,8 @@
 				<li>
 					<a href="#"><i class='bx bx-registered icon'></i> Reservas <i class='bx bx-chevron-right icon-right'></i></a>
 					<ul class="side-dropdown">
-						<li><a th:href="@{/reserva}">Listar Reservas</a></li>
-                                                <li><a th:href="@{/reservaPrueba}">Listar Reservas Act</a></li>
+						<li><a th:href="@{/reserva}">Historial Reservas</a></li>
+                                                                                                                                                <li><a th:href="@{/reservaPrueba}">Listar Reservas</a></li>
 						<li><a th:href="@{/agregarReserva}">Registrar Reservas</a></li>
 					</ul>
 				</li>
@@ -63,23 +63,23 @@
 						<li><a th:href="@{/agregarHabitaciones}">Registrar Habi.</a></li>
 					</ul>
 				</li>
-				<li>
-					<a href="#"><i class='bx bx-bowl-hot icon'></i> Servicios <i class='bx bx-chevron-right icon-right'></i></a>
+				<li sec:authorize="hasRole('ROLE_ADMIN')">
+					<a href="#" ><i class='bx bx-bowl-hot icon'></i> Servicios <i class='bx bx-chevron-right icon-right'></i></a>
 					<ul class="side-dropdown">
 						<li><a th:href="@{/servicio}">Listar Servicios</a></li>
 						<li><a th:href="@{/agregarServicio}">Registrar Servicios</a></li>
 					</ul>
 				</li>
 
-				<li class="divider" data-text="INVENTARIO">INVENTARIO</li>
-				<li>
+				<li class="divider" data-text="INVENTARIO" sec:authorize="hasRole('ROLE_ADMIN')">INVENTARIO</li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')">
 					<a href="#"><i class='bx bx-package icon'></i> Productos <i class='bx bx-chevron-right icon-right'></i></a>
 					<ul class="side-dropdown">
 						<li><a th:href="@{/stock}">Listar Productos</a></li>
 						<li><a th:href="@{/agregarStock}">Registrar Productos</a></li>
 					</ul>
 				</li>
-				<li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')">
 					<a href="#"><i class='bx bx-cart-add icon'></i> Proveedores<i class='bx bx-chevron-right icon-right'></i></a>
 					<ul class="side-dropdown">
 						<li><a th:href="@{/proveedores}">Listar Proveedores</a></li>
@@ -87,15 +87,15 @@
 					</ul>
 				</li>
 
-				<li class="divider" data-text="PERSONAL">PERSONAL</li>
-				<li>
+				<li class="divider" data-text="PERSONAL" sec:authorize="hasRole('ROLE_ADMIN')">PERSONAL</li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')">
 					<a href="#"><i class='bx bx-bed icon'></i> Empleados <i class='bx bx-chevron-right icon-right'></i></a>
 					<ul class="side-dropdown">
 						<li><a th:href="@{/empleado}">Listar Empleados</a></li>
 						<li><a th:href="@{/agregarEmpleado}">Registrar Empleados</a></li>
 					</ul>
 				</li>
-				<li><a th:href="@{/reservaPrueba}"><i class='bx bx-user-pin icon'></i> Perfiles</a></li>
+                                <li style="display: none"><a th:href="@{/reservaPrueba}"><i class='bx bx-user-pin icon'></i> Perfiles</a></li>
 			</ul>
 		</div>
         <div class="ads">
@@ -123,7 +123,6 @@
                 <span class="badge"></span>
             </a>
             <span class="divider"></span>
-			<h1 class="profile-name">Recepcion</h1>
             <div class="profile">
                 <img  th:src="@{../resources/img/user1.png}" alt="">
                 <ul class="profile-link">

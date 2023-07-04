@@ -38,7 +38,7 @@
 							</ul>
 						</div>
 						<div class="inputFunction">
-							<a href="#" class="btn-download">
+							<a th:href="@{/agregarReserva}" class="btn-download">
 								<i class='bx bx-plus-circle'></i>
 								<span>REGISTRAR</span>
 							</a>
@@ -52,13 +52,13 @@
 								</div>
                                                                 
 								<h4 class="nomHabitacion" th:text="${reserva.habitaciones.nom_hab}"></h4>
-								<h4 class="nomCliente" th:text="${reserva.clientes.nom_cli}">Leonel</h4>
-								<h4 class="nomCliente" th:text="${reserva.clientes.ape_cli}">Llactas</h4>
+								<h4 class="nomCliente" th:text="${reserva.clientes.nom_cli}"></h4>
+								<h4 class="nomCliente" th:text="${reserva.clientes.ape_cli}"></h4>
 								<div class="div-estado">
-									<h4 class="nomEstado" th:text="${reserva.origen.des_orig}">En Espera</h4>
+									<h4 class="nomEstado" th:text="${reserva.origen.des_orig}"></h4>
 								</div>
-                                                                <a class="btn-detalle" th:href="@{/editarReserva/}+${reserva.cod_res}"><i class='bx bx-bed'></i></a>
-								<button class="btn-detalle"><i class='bx bx-money-withdraw'></i></button>
+                                                                                                                                                                                                <a class="btn-detalle" th:href="@{/editarReserva/}+${reserva.cod_res}"><i class='bx bx-bed'></i></a>
+                                                                                                                                                                                                <a class="btn-detalle" th:href="@{/salidaReserva/}+${reserva.cod_res}"><i class='bx bx-money-withdraw'></i></a>
 							</form>
 						</div>
 						<!---->

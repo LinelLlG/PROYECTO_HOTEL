@@ -126,7 +126,7 @@ public class ControladorPrincipal {
          Usuarios usu = usuarioService.loginPerfil(vPerfil);
        model.addAttribute("CODIGOUSUARIO", usu.getCod_usuarios());
         
-        return "dashboard";
+        return "redirect:/reservaPrueba";
     }
     
     /*----------------CRUD HABITACIONES----------------*/
@@ -475,7 +475,25 @@ public class ControladorPrincipal {
         
         reserva = reservaService.buscarReservas(reserva);
         model.addAttribute("reserva", reserva);
-        return "mantenimientoReserva";
+        return "actualizarReserva";
+    }
+    
+    @GetMapping("/salidaReserva/{cod_res}")
+    public String salidaReserva(Reserva reserva, Model model){
+        var clientes = clientesService.listarClientes();
+        model.addAttribute("clientes", clientes);
+        var habitaciones = habitacionesService.listarHabitaciones();
+        model.addAttribute("habitaciones", habitaciones);
+        var estado = estadoService.listarEstado();
+        model.addAttribute("estado", estado);
+        var origen = origenService.listarOrigen();
+        model.addAttribute("origen", origen);
+        var pago = pagoService.listarPago();
+        model.addAttribute("pago", pago);
+        
+        reserva = reservaService.buscarReservas(reserva);
+        model.addAttribute("reserva", reserva);
+        return "salidaReserva";
     }
     
         @GetMapping("/findPorApe/{apellido}")

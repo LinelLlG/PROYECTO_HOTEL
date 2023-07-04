@@ -25,10 +25,10 @@
 					<!--CONTENIDO INICIO-->
 					<div class="head-title">
 						<div class="left">
-							<h1>Nueva Reserva</h1>
+							<h1>Actualizar Reserva</h1>
 							<ul class="breadcrumb">
 								<li>
-									<a href="#">Registro</a>
+									<a href="#">Actualizar</a>
 								</li>
 								<li><i class="fa-solid fa-chevron-right"></i></li>
 								<li>
@@ -56,7 +56,7 @@
 											<span class="details">Codigo Cliente</span>
 											<input type="text" placeholder="El Codigo es autogenerado" required id="idCliente" th:field="*{clientes.cod_cli}">
 										</div>
-										<div class="input-box">
+										<div class="input-box" style="display: none;" >
 											<span class="details">Cliente</span>
 											<input type="text" placeholder="Ingrese los nombres"  id="nomClie" th:field="*{clientes.ape_cli}" >
                                                                                         <input type="text" placeholder="Ingrese los nombres"  id="nomCliente" th:field="*{clientes.nom_cli}" hidden="true">
@@ -69,7 +69,7 @@
 											<span class="details">Codigo Habitacion</span>
 											<input type="text" placeholder="El Codigo es autogenerado" required id="codHabitacion" th:field="*{habitaciones.cod_hab}">
 										</div>
-										<div class="input-box">
+										<div class="input-box" style="display: none;">
 											<span class="details">Habitacion</span>
 											<input type="text" placeholder="Ingrese la habitacion" required id="nomHabitacion" th:field="*{habitaciones.nom_hab}">
 											<div class="div-a">
@@ -98,7 +98,6 @@
 											<select name="origen" id="origen" th:field="*{origen.cod_orig}">
 												<option value="1">En Espera</option>
 												<option value="2">Ocupada</option>
-												<option value="3">Salida</option>
 											</select>
 										</div>
 										<div class="input-box">
@@ -115,7 +114,7 @@
 										</div>
 									</div>
 									<div class="button">
-                                                                            <button class="cssbuttons-io-button" > REGISTRAR
+                                                                            <button class="cssbuttons-io-button" > ACTUALIZAR
 											<div class="icon">
 											  <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
 											</div>
@@ -150,7 +149,7 @@
 						</li>
 					</ul>
 					<div class="buscar-cliente">
-						<input type="text" placeholder="Apellido del Cliente" id="idApellidos" name="idBuscar">
+						<input type="text" placeholder="Nombre del Cliente" id="idApellidos" name="idBuscar">
 						<button type="button" id="btn-consultar">Buscar</button>
 					</div>
 				</div>

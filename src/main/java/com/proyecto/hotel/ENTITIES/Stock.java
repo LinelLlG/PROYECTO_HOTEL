@@ -17,7 +17,7 @@ public class Stock implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cod_stock;
+    private Integer cod_stock;
     private String nom_stock;
     private Long cant_stock;
 
@@ -36,5 +36,14 @@ public class Stock implements Serializable{
     @ManyToOne
     @JoinColumn(name="cod_disp")
     private Disponibilidad disponibilidad;
+
+    public Stock() {
+    }
+    
+    
+
+    public Stock(int codigo) {
+        this.cod_stock = codigo;
+    }
     
 }

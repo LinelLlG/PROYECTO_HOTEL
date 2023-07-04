@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--PROFESOR-->
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+	<!--INTEGRACIONES DE SIEMPRE-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,600;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b3a8f0ecfc.js" crossorigin="anonymous"></script>
+    <!--NECESARIAS PARA EL INDEX-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+	<link rel="stylesheet" th:href="@{../resources/css/index.css}">
+	<!--DATATABLES-->
+	<script hrf="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/datatables.min.js"></script>
+	<title>SYSTEM - HOTEL</title>
+	<link rel="shortcut icon" th:href="@{/resources/img/logo1.ico}">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.min.css">
+</head>
+<body>
+<div th:insert="layout :: layout"></div>
+
+	<!-- MAIN -->
+	<section id="contenido">
+		<main>
+		<form th:action="@{/grabarBoleta}" method="POST">
+			<div class="info-data">
+				<div class="card">
+					<div class="contenedor-datos">
+						<!--CONTENIDO INICIO-->
+					<div class="head-title">
+						<div class="left">
+							<h1>Nueva Venta</h1>
+							<ul class="breadcrumb">
+								<li>
+									<a href="#">Venta</a>
+								</li>
+								<li><i class="fa-solid fa-chevron-right"></i></li>
+								<li>
+									<a href="listarClientes.html" class="active">Productos</a>
+								</li>
+							</ul>
+						</div>
+						<div class="inputFunction">
+							<a type="button" id="Cancelar" class="btn-cancel">
+								<i class='bx bx-x' ></i>
+								<span>CANCELAR</span>
+							</a>
+						</div>	
+					</div>
+					<div class="table-data">
+						<div class="order">
+							<div class="container">
+								<div action="#">
+									<div class="user-details">
+										<div class="input-box" style="display: none;">
+											<span class="details">Número</span>
+											<input class="readonly" type="text" placeholder="El código autogenerado" required readonly>
+										</div>
+										<div class="input-box" style="display: none;">
+											<span class="details">Usuario</span>
+											<input type="text" name="usuario" placeholder="Ingrese el Usuario" required readonly>
+										</div>
+										<div class="input-box">
+											<span class="details">Codigo Cliente</span>
+											<input type="text" placeholder="Ingrese el código" id="idCliente" name="codClie" required readonly>
+										</div>
+										<div class="input-box">
+											<span class="details">Nombre Cliente</span>
+											<div class="cliente">
+												<input type="text" placeholder="Ingrese el Nombre" id="nomClie" name="cliente" required readonly>
+												<button type="button" data-bs-toggle="modal" data-bs-target="#modalCliente">Buscar</button>
+											</div>
+										</div>
+										<div class="input-box">
+											<span class="details">Fecha</span>
+											<input type="date" placeholder="Ingrese los apellidos" name="fecha" required>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--CONTENIDO FIN-->
+					</div>
+				</div>
+			</div>
+			<div class="data">
+				<div class="content-data">
+					<!--CONTENIDO INICIO-->
+					<div class="table-data">
+						<div class="order">
+							<div class="head">
+								<h3>Los productos</h3>
+								<input type="number" class="inputSearch" placeholder="Cantidad" id="idCantidad" name="cantidad">
+								<input type="search" class="inputSearch" id="searchTerm" onkeyup="doSearch()" placeholder="Busca">
+								<button style="border: none; color:#58555E;"><i class="fa-solid fa-magnifying-glass"></i></button>
+							</div>
+							<div class="tabla-scroll">
+								<table id="tablaHabitaciones">
+									<thead>
+										<tr>
+											<th>Código</th>
+											<th>Nombre</th>
+											<th>Precio</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="row:${stock}">
+											<td th:text="${row.cod_stock}"></td>
+											<td th:text="${row.nom_stock}"></td>
+											<td th:text="${row.pre_venta_stock}"></td>
+											<td class="td-contenedor-botones"><button type="button" class="status btn-edit btn-adicionar"><i class='bx bx-plus'></i></button></td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr class='noSearch hide'>
+											<td colspan="10"></td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--CONTENIDO FIN-->
+				</div>
+				<div class="content-data">
+					<!--CONTENIDO INICIO-->
+					<div class="table-data">
+						<div class="order">
+							<form action="#" class="head">
+								<h3>Detalle</h3>
+							</form>
+							<div class="tabla-scroll">
+								<table id="tableDetalle">
+									<thead>
+										<tr>
+											<th>Código</th>
+											<th>Nombre</th>
+											<th>Cantidad</th>
+											<th>Precio</th>
+											<th>Importe</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										
+									</tbody>
+									<tfoot>
+										<tr class='noSearch hide'>
+											<td colspan="10"></td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<div class="order">
+							<div class="area-total">
+								<div class="area-total-input">
+									<span>Total</span>
+									<input type="text" placeholder="Total" id="id-total" name="total" readonly>
+                                                                        <select name="pago">
+                                                                            <option>Seleccione el metodo de pago</option>
+                                                                            <option value="1">Efectivo</option>
+                                                                            <option value="2" >Tarjeta</option>
+									</select>
+								</div>
+								<div class="area-total-btn">
+									<button type="submit" id="Guardar">Registrar Compra</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--CONTENIDO FIN-->
+				</div>
+			</div>
+			</form>
+		</main>
+	</section>
+	<!-- MAIN CONTENEDOR FIN -->
+
+	<!--MODAL DE BUSCAR CLIENTE-->
+	<div class="modal fade" id="modalCliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+		  <div class="modal-content modal-content-main">
+			<div class="modal-header">
+				<div class="left-modal">
+					<h1>Buscar Cliente</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Action</a>
+						</li>
+						<li><i class="fa-solid fa-chevron-right"></i></li>
+						<li>
+							<a href="#" class="active">Search</a>
+						</li>
+					</ul>
+					<div class="buscar-cliente">
+						<input type="text" placeholder="Apellido del Cliente" id="idApellidos" name="idBuscar">
+						<button type="button" id="btn-consultar">Buscar</button>
+					</div>
+				</div>
+			</div>
+			<div class="container-modal-cliente">
+				<!--CONTENIDO INICIO-->
+				<div class="table-data">
+					<div class="order">
+						<div class="tabla-scroll">
+						<table id="tableClientes">
+							<thead>
+								<tr>
+									<th>Código</th>
+									<th>Nombre</th>
+									<th>Apellido</th>
+									<th>Dni</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+					</div>
+					</div>
+				</div>
+				<!--CONTENIDO FIN-->
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+		<!-- ================SCRIPTS INICIO====================-->
+	
+	<!--SCRIPT ALERTIFY - TOAST-->
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.min.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	
+	<script>
+		$(document).ready(function() {
+	
+		} );
+		function cargarRequerimientos(){
+			
+		}
+		function cargarBines(){
+			
+		}
+
+		$(document).on("click",".btn-adicionar",function(){
+	
+	let cod,nom,cant,pre;
+	cod=$(this).parents("tr").find("td")[0].innerHTML;
+	nom=$(this).parents("tr").find("td")[1].innerHTML;
+	pre=$(this).parents("tr").find("td")[2].innerHTML;
+	cant=$("#idCantidad").val()
+	//limpiar tabla
+	$("#tableDetalle tbody").empty();
+	let total = 0;
+	let boton = "<button type='button' class='status btn-delete btn-eliminar'><i class='bx bx-trash' ></i></button>";
+	
+	$.get("adicionar?codigo="+cod+"&nombre="+nom+"&cantidad="+cant+"&precio="+pre,function(response){
+		//console.log(response);
+		$.each(response,function(index,item){
+			let imp = item.cantidad * item.precio
+			total += imp;
+			$("#tableDetalle").append("<tr><td>"+item.codigo+"</td><td>" 
+												+item.nombre+"</td><td>"+
+										item.cantidad+"</td><td>"+
+										item.precio+"</td><td>"+
+										imp+"</td><td>"
+										+boton+"</td></tr>");
+		})
+	$("#id-total").val(total);
+	})
+})
+
+$(document).on("click",".btn-eliminar",function(){
+	
+	let cod,nom,cant;
+	cod=$(this).parents("tr").find("td")[0].innerHTML;
+	//limpiar tabla
+	$("#tableDetalle tbody").empty();
+	
+	let boton = "<button type='button' class='status btn-delete btn-eliminar'><i class='bx bx-trash' ></i></button>";
+	let total = 0;
+	$.get("eliminar?codigo="+cod,function(response){
+		//console.log(response);
+		$.each(response,function(index,item){
+			let imp = item.cantidad * item.precio
+			total += imp;
+			$("#tableDetalle").append("<tr><td>"+item.codigo+"</td><td>" 
+												+item.nombre+"</td><td>"+
+										item.cantidad+"</td><td>"+
+										item.precio+"</td><td>"+
+										imp+"</td><td>"
+										+boton+"</td></tr>");
+		})
+	$("#id-total").val(total);
+	})
+})
+
+$(document).on("click","#btn-consultar",function(){
+	
+	let ape;
+	ape=$("#idApellidos").val();
+	//limpiar tabla
+	$("#tableClientes tbody").empty();
+	
+	let boton = "<button type='button' class='status btn-edit btn-enviar'><i class='bx bx-plus'></i></button>";
+	
+	$.get("findPorApe2/"+ape,function(response){
+		console.log(response);
+		$.each(response,function(index,item){
+			$("#tableClientes").append("<tr>"+
+										"<td>"+item.cod_cli+"</td>"+
+										"<td>"+item.nom_cli+"</td>"+
+										"<td>"+item.ape_cli+"</td>"+
+										"<td>"+item.dni_cli+"</td>"+    
+										"<td>"+boton+"</td>"+
+										"</tr>");
+										
+		})
+	
+	})
+})
+$(document).on("click",".btn-enviar",function(){
+	
+	let cod,nom,ape;
+	cod=$(this).parents("tr").find("td")[0].innerHTML;
+	nom=$(this).parents("tr").find("td")[1].innerHTML;
+	ape=$(this).parents("tr").find("td")[2].innerHTML;
+	
+	$("#idCliente").val(cod);
+	$("#nomClie").val(nom + ' '+ ape);
+
+})
+	</script>
+	<!--SweetAlert-->
+		<script th:inline="javascript" th:if="${MENSAJE!=null}">
+			let msj;
+			msj=/*[[${MENSAJE}]]*/		
+			Swal.fire({title:msj,imageUrl:'/resources/img/paltitaGifFeliz.gif',imageWidth:130,imageHeight:105,imageAlt:'Custom image',confirmButtonColor: '#428a75',confirmButtonText: 'De acuerdo'});
+		</script>
+<!--SCRIPTS FIN-->
+</body>
+</html>

@@ -29,4 +29,14 @@ public class Usuarios implements Serializable{
     @OneToMany
     @JoinColumn(name = "cod_usuarios")
     private List<Roles> roles;
+    
+    public Usuarios() {
+        
+    }
+
+    public Usuarios(Long codUsu) {
+        this.cod_usuarios = codUsu;
+    }
+
+    
 }

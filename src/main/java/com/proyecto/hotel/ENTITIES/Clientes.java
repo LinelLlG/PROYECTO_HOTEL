@@ -48,5 +48,14 @@ public class Clientes implements Serializable{
     @ManyToOne
     @JoinColumn(name="cod_disp")
     private Disponibilidad disponibilidad;
+
+    public Clientes() {
+    }
     
+    
+
+    public Clientes(Long codClie) {
+        this.cod_cli = codClie;
+    }
+
 }

@@ -23,5 +23,5 @@ public class Pago implements Serializable{
 
     @OneToMany(mappedBy = "pago")
     private List<Reserva> reserva;
-
+    
 }

@@ -42,4 +42,8 @@ public class UsuariosSERVICE implements UserDetailsService{
         
     }
     
+    public Usuarios loginPerfil(String vUsuario) {
+		return usuarioDao.iniciarSesion(vUsuario);
+	}
+    
 }

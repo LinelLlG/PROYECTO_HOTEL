@@ -695,3 +695,36 @@ begin
 end
 
 $$
+
+delimiter $$
+create  trigger recalcularDispoTrigger
+after update on tb_reserva
+for each row
+    begin
+        declare codHab int ;
+        set codHab = new.cod_hab;
+
+        if new.cod_orig = 3 
+        then
+            update tb_habitaciones set cod_disp = 1 where cod_hab = codHab;
+        end if;
+end;
+
+create table tb_boleta
+(
+cod_bol 	serial primary key ,
+cod_cli		int references tb_clientes,
+cod_usuarios	int references tb_usuarios,
+fecha		date,
+total_bol	decimal(10,2)
+);
+
+create table tb_det_boleta
+(
+cod_bol 	int references tb_boleta,
+cod_stock	int references tb_stock,
+precio		decimal(10,2),
+cantidad 	int,
+cod_pago	int references tb_pago,
+primary key (cod_bol,cod_stock)
+);

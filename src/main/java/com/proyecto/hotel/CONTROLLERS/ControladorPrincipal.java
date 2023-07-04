@@ -9,6 +9,7 @@ import com.proyecto.hotel.ENTITIES.Reserva;
 import com.proyecto.hotel.ENTITIES.Sede;
 import com.proyecto.hotel.ENTITIES.Servicio;
 import com.proyecto.hotel.ENTITIES.Stock;
+import com.proyecto.hotel.ENTITIES.Usuarios;
 import com.proyecto.hotel.SERVICES.CargoSERVICE;
 import com.proyecto.hotel.SERVICES.ClientesSERVICE;
 import com.proyecto.hotel.SERVICES.DisponibilidadSERVICE;
@@ -30,6 +31,7 @@ import com.proyecto.hotel.SERVICES.TipoContratoSERVICE;
 import com.proyecto.hotel.SERVICES.TipoHabitacionSERVICE;
 import com.proyecto.hotel.SERVICES.TipoServicioSERVICE;
 import com.proyecto.hotel.SERVICES.TipoStockSERVICE;
+import com.proyecto.hotel.SERVICES.UsuariosSERVICE;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,10 +42,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+@SessionAttributes({"ENLACES","CODIGOUSUARIO"})
 @Controller
 @Slf4j
 public class ControladorPrincipal {
@@ -110,6 +112,9 @@ public class ControladorPrincipal {
      
      @Autowired
      private ReservaSERVICE reservaService;
+     
+     @Autowired
+     private UsuariosSERVICE usuarioService;
     
     /*-------------- INICIO -------------*/
     
@@ -117,6 +122,9 @@ public class ControladorPrincipal {
     public String inicio(Model model, @AuthenticationPrincipal User user){        
         log.info("Ejectuando el controlador Spring MVC");
         log.info("usuario que hizo login: " + user );
+        String vPerfil = user.getUsername();
+         Usuarios usu = usuarioService.loginPerfil(vPerfil);
+       model.addAttribute("CODIGOUSUARIO", usu.getCod_usuarios());
         
         return "dashboard";
     }

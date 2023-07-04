@@ -10,6 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author Nefi Alvarado
  */
-public interface StockDAO extends JpaRepository<Stock, Long>{
+public interface StockDAO extends JpaRepository<Stock, Integer>{
     
 }
